@@ -13,9 +13,9 @@
 
 ## Comment l'utiliser ?
 
-1. Téléchargez le fichier myrtille.cls
-2. Placer ce fichier dans le même répertoire que votre main.tex
-3. Configurez votre main.tex pour utiliser les commandes définie dans la classe (Nous vous conseillons d'utiliser le main.tex de ce dépôt comme template)
+1. Téléchargez le fichier `myrtille.cls`
+2. Placer ce fichier dans le même répertoire que votre `main.tex`
+3. Configurez votre `main.tex` pour utiliser les commandes définie dans la classe (Nous vous conseillons d'utiliser le `main.tex` de ce dépôt comme template)
 4. Compilez avec `pdflatex` (ou votre moteur préféré).
 
 Un guide complet se trouve dans `myrtille-guide.pdf`. Ce guide a été compilé à partir des fichiers sources présents dans ce dépôt.
