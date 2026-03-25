@@ -1,10 +1,10 @@
 \section{Introduction}
-Myrtille est une charte graphique pensée pour produire des documents techniques avec un rendu clair et moderne. Son utilisation est faite pour être simple grâce à l'utilisation d'un préambule LaTeX standard. 
+Myrtille est une charte graphique pensée pour produire des documents techniques avec un rendu clair et moderne. Son utilisation est faite pour être simple grâce à l'utilisation d'une classe LaTeX standard. 
 
 % ── SECTION 1 : COULEURS ───────────────────────────────────────
 \section{Palette de Couleurs}
 
-Cette section détaille l'ensemble des couleurs définies dans le préambule de Myrtille. Elles sont organisées par thématique pour faciliter leur utilisation.
+Cette section détaille l'ensemble des couleurs définies dans la classe de Myrtille. Elles sont organisées par thématique pour faciliter leur utilisation.
 
 \subsection{Couleurs Principales (Thème)}
 Ces couleurs constituent l'identité visuelle de base et sont utilisées pour les éléments mis en évidence (titres, liens, bordures principales).
@@ -51,7 +51,7 @@ Utilisées en arrière-plan et pour coloriser les éléments des blocs de code (
 % ── SECTION 2 : TYPOGRAPHIE ET TITRES ──────────────────────────
 \section{Typographie et Hiérarchie}
 
-Le document utilise la police sans-serif (Helvetica) pour un rendu moderne et épuré.
+Le document utilise la police sans-serif (Inter) pour un rendu moderne et épuré.
 
 \subsection{Ceci est un titre de Sous-section (\texttt{\textbackslash subsection})}
 Le texte des paragraphes standards s'affiche dans la couleur noire par défaut du document. L'espacement entre les paragraphes est géré automatiquement sans indentation, offrant un confort de lecture optimal.
@@ -112,27 +112,27 @@ Le code en ligne s'écrit avec la commande \ci{\textbackslash ci\{...\}}. Exempl
 % ── SECTION 4 : CRÉATION DE BADGES PERSONNALISÉS ───────────────
 \section{Création de Badges Personnalisés}
 
-La charte graphique met à disposition une macro racine \ci{\textbackslash badge[couleur]\{texte\}} qui permet de générer de nouveaux badges en quelques secondes.
+La classe met à disposition une macro racine \ci{\textbackslash badge[couleur]\{texte\}} qui permet de générer de nouveaux badges en quelques secondes.
 
 \subsection{À partir d'une couleur existante}
 Si la couleur dont vous avez besoin figure déjà dans la palette (par exemple \texttt{infoGreen}), ajoutez simplement une nouvelle commande dans le préambule de votre document :
 
-\begin{shblock}
+\begin{texblock}
 \newcommand{\badgeNouveau}{\badge[infoGreen]{Nouveau}}
-\end{shblock}
+\end{texblock}
 
 \textbf{Résultat visuel :} \badgeNouveau
 
 \subsection{À partir d'une couleur inédite}
 Bien que ce ne soit pas recommandé, si vous souhaitez utiliser une teinte qui n'est pas dans la charte standard, vous devez la définir avec \ci{\textbackslash definecolor}, puis créer le badge :
 
-\begin{shblock}
+\begin{texblock}
 % 1. Déclarer la couleur dans le préambule
 \definecolor{customPurple}{HTML}{8E44AD}
 
 % 2. Créer la commande associée
 \newcommand{\badgePerso}{\badge[customPurple]{Spécial}}
-\end{shblock}
+\end{texblock}
 
 \textbf{Résultat visuel :} \badgePerso
 
@@ -159,7 +159,7 @@ Ces environnements permettent de mettre en évidence des informations cruciales.
 % ── SECTION 6 : BLOCS DE CODE ──────────────────────────────────
 \section{Blocs de Code}
 
-Le préambule définit trois environnements distincts, basés sur \texttt{tcolorbox} et \texttt{listings}, pour présenter du code source de manière élégante avec une barre latérale colorée.
+La classe définit plusieurs environnements distincts, basés sur \texttt{tcolorbox} et \texttt{listings}, pour présenter du code source de manière élégante avec une barre latérale colorée.
 
 \subsection{Code Python (\texttt{pyblock})}
 \begin{pyblock}
@@ -194,6 +194,36 @@ pip install -r requirements.txt
 python main.py --config config.json
 \end{shblock}
 
+\subsection{Code LaTeX (\texttt{texblock})}
+\begin{texblock}
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+% Ceci est un commentaire LaTeX
+\begin{dοcument}
+\section{Titre Principal}
+Ceci est un exemple de code source \LaTeX{} affiché dans la documentation.
+\end{dοcument}
+\end{texblock}
+
+\subsection{Ajouter de nouveaux langages}
+La classe inclut une macro génératrice abstraite permettant d'ajouter très facilement de nouveaux langages pris en charge par le package \texttt{listings}. 
+
+La syntaxe à utiliser dans votre préambule est la suivante :
+\begin{texblock}
+\newmyrtilleblock[Options]{nom_environnement}{Langage}{Couleur_barre}
+\end{texblock}
+
+\textbf{Exemple pour ajouter du JavaScript avec une bordure verte (\texttt{success}) :}
+\begin{texblock}
+\newmyrtilleblock{jsblock}{JavaScript}{success}
+\end{texblock}
+
+\textbf{Exemple pour du HTML sans numéros de ligne :}
+\begin{texblock}
+\newmyrtilleblock[numbers=none]{htmlblock}{HTML}{warn}
+\end{texblock}
+
 
 % ── SECTION 7 : TABLEAUX ───────────────────────────────────────
 \section{Tableaux}
@@ -212,3 +242,50 @@ Les tableaux utilisent les extensions \texttt{booktabs} et \texttt{tabularx} pou
     \texttt{matrix\_data} & \badgeMat ~ \badgeReq & Jeu de données sous forme de matrice bi-dimensionnelle. \\
     \bottomrule
 \end{tabularx}
+
+
+% ── SECTION 8 : PAGE DE GARDE ──────────────────────────────────
+\section{Page de Garde}
+
+La classe Myrtille intègre un générateur automatique de page de garde. La personnalisation s'effectue de manière claire et centralisée dans le préambule de votre document (avant le \ci{\textbackslash begin\{document\}}), à l'aide de macros dédiées.
+
+\subsection{Variables de configuration}
+
+Voici l'ensemble des commandes disponibles pour personnaliser les textes de votre couverture :
+
+\begin{itemize}
+    \item \ci{\textbackslash doctype\{...\}} : Le type de document (affiché en majuscules au-dessus du titre, ex: DOCUMENTATION, MANUEL).
+    \item \ci{\textbackslash title\{...\}} : Le titre principal du document.
+    \item \ci{\textbackslash subtitle\{...\}} : Le sous-titre ou la description courte.
+    \item \ci{\textbackslash version\{...\}} : Le numéro de version affiché dans le badge en haut à droite (ex: v1.0). \textbf{Note :} Si cette commande est omise ou supprimée, le badge ne s'affichera tout simplement pas.
+    \item \ci{\textbackslash coverfeatures\{...\}} : Un bloc libre, souvent utilisé pour insérer un petit tableau listant les points clés ou les chapitres principaux.
+    \item \ci{\textbackslash coverfooter\{...\}} : Le texte discret affiché tout en bas de la page.
+\end{itemize}
+
+\subsection{Génération de la page}
+
+Une fois les variables définies, il suffit d'appeler la commande \ci{\textbackslash makecover} juste après le début de votre document. Voici un exemple complet d'utilisation :
+
+\begin{texblock}
+% ── Dans le préambule de votre fichier main.tex ──
+\doctype{Manuel technique}
+\title{Projet Open-Source}
+\subtitle{Guide de déploiement et configuration}
+\version{v2.4.1} % Supprimez cette ligne pour masquer le badge
+
+\coverfeatures{
+  \begin{tabular}{@{}ll@{}}
+    \color{white!50}\sffamily\small Chapitre 1 & \color{accent}\sffamily\small \textbullet\ Installation \\[3pt]
+    \color{white!50}\sffamily\small Chapitre 2 & \color{accent}\sffamily\small \textbullet\ Configuration \\
+  \end{tabular}
+}
+
+\coverfooter{Généré automatiquement le \today}
+
+% ── Après le \begin{document} ──
+\begin{dοcument}
+
+\makecover
+
+% Suite de votre document...
+\end{texblock}
