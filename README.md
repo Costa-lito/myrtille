@@ -2,8 +2,6 @@
 
 **Myrtille** est une classe LaTeX (`.cls`) moderne, épurée et prête à l'emploi, conçue pour rédiger des documents techniques, des manuels ou d'autres types de documents. Elle masque toute la complexité du préambule LaTeX pour offrir à l'utilisateur une expérience de rédaction fluide et centralisée. 
 
----
-
 ## Fonctionnalités Principales
 
 * **Page de garde automatisée :** Génération d'une couverture design avec fond vectoriel intégré via de simples variables (`\title`, `\subtitle`, `\version`, etc.).
@@ -12,8 +10,6 @@
 * **Badges dynamiques :** Un système de badges en ligne (`\badgeReq`, `\badgeOpt`, etc.) pour qualifier rapidement des informations.
 * **Blocs de code avancés :** Environnements de code pré-configurés (Python, JSON, Shell, LaTeX) basés sur `tcolorbox` et `listings`, avec coloration syntaxique et bordures stylisées.
 * **Typographie soignée :** Utilisation de la police sans-serif Inter pour un rendu contemporain, avec des espacements de paragraphes optimisés pour la lecture.
-
----
 
 ## Comment l'utiliser ?
 
@@ -24,8 +20,6 @@
 
 Un guide complet se trouve dans `myrtille-guide.pdf`. Ce guide a été compilé à partir des fichiers sources présents dans ce dépôt.
 
----
-
 ## Ajouter de nouveaux langages de code
 
 La classe intègre une puissante macro abstraite pour générer de nouveaux blocs de code avec barre latérale colorée en une seule ligne. Dans votre préambule, ajoutez simplement :
@@ -34,8 +28,6 @@ La classe intègre une puissante macro abstraite pour générer de nouveaux bloc
 % Syntaxe : \newmyrtilleblock[Options]{nom_env}{Langage_listings}{Couleur_barre}
 \newmyrtilleblock{jsblock}{JavaScript}{success}
 ```
-
----
 
 ## Crédits & Technique
 
