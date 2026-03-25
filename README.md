@@ -1,4 +1,4 @@
-# 🫐 Myrtille — Charte Graphique LaTeX
+# 🫐 Myrtille
 
 **Myrtille** est une classe LaTeX (`.cls`) moderne, épurée et prête à l'emploi, conçue pour rédiger des documents techniques, des manuels ou d'autres types de documents. Elle masque toute la complexité du préambule LaTeX pour offrir à l'utilisateur une expérience de rédaction fluide et centralisée. 
 
