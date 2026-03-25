@@ -1,0 +1,44 @@
+# Fichiers de compilation LaTeX standards
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ind
+*.ilg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Fichiers liés à la bibliographie (Biber/BibTeX)
+*.bcf
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Fichiers temporaires d'éditeurs (TeXstudio, Vim, Emacs, etc.)
+*.swp
+*.bak
+*.sav
+*.tex.bak
+*~
+
+# Fichiers systèmes parasites (macOS / Windows)
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Dossiers de configuration IDE locaux
+.vscode/
+.idea/
