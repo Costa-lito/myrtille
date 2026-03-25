@@ -15,22 +15,6 @@
 
 ---
 
-## Architecture du Projet
-
-\`\`\`text
-myrtille/
-├── .gitignore 
-├── README.md 
-├── myrtille.cls            # Classe LaTeX autonome
-├── main.tex                # Fichier principal d'utilisation
-├── content.tex             # Contenu de démonstration
-├── myrtille-guide.pdf       # Rendu final généré
-└── assets/                 
-    └── cover_bg.svg        # Fichier source de la couverture
-\`\`\`
-
----
-
 ## Comment l'utiliser ?
 
 1. Téléchargez le fichier myrtille.cls
