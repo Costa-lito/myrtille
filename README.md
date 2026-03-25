@@ -1,6 +1,6 @@
 # 🫐 Myrtille — Charte Graphique LaTeX
 
-**Myrtille** est une classe LaTeX (`.cls`) moderne, épurée et prête à l'emploi, conçue pour rédiger des documentations techniques, des manuels ou d'autres types de doccuments. Elle masque toute la complexité du préambule LaTeX pour offrir à l'utilisateur une expérience de rédaction fluide et centralisée. 
+**Myrtille** est une classe LaTeX (`.cls`) moderne, épurée et prête à l'emploi, conçue pour rédiger des documents techniques, des manuels ou d'autres types de documents. Elle masque toute la complexité du préambule LaTeX pour offrir à l'utilisateur une expérience de rédaction fluide et centralisée. 
 
 ---
 
@@ -21,7 +21,7 @@
 2. Placer ce fichier dans le même répertoire que votre main.tex
 3. Configurez votre main.tex pour utiliser les commandes définie dans la classe (Nous vous conseillons d'utiliser le main.tex de ce dépôt comme template)
 
-\`\`\`latex
+```latex
 \documentclass{myrtille}
 
 % Configuration de la couverture
@@ -37,7 +37,7 @@
 Commencez à rédiger ici...
 
 \end{document}
-\`\`\`
+```
 
 4. Compilez avec `pdflatex` (ou votre moteur préféré).
 
@@ -49,10 +49,10 @@ Un guide complet se trouve dans `myrtille-guide.pdf`. Ce guide a été compilé 
 
 La classe intègre une puissante macro abstraite pour générer de nouveaux blocs de code avec barre latérale colorée en une seule ligne. Dans votre préambule, ajoutez simplement :
 
-\`\`\`latex
+```latex
 % Syntaxe : \newmyrtilleblock[Options]{nom_env}{Langage_listings}{Couleur_barre}
 \newmyrtilleblock{jsblock}{JavaScript}{success}
-\`\`\`
+```
 
 ---
 
@@ -60,4 +60,4 @@ La classe intègre une puissante macro abstraite pour générer de nouveaux bloc
 
 La classe `myrtille.cls` est conçue pour être **100 % autonome**. 
 
-Le fond d'écran de la page de garde n'est pas une image externe, mais du code vectoriel TikZ pur dessiné directement au moment de la compilation. Le design original a été réalisé au format SVG (disponible dans le dossier `assets/`), puis converti de manière transparente en code LaTeX grâce à la superbe extension Inkscape **[svg2tikz](https://github.com/xyz2tex/svg2tikz)**.
+Le fond d'écran de la page de garde n'est pas une image externe, mais du code vectoriel TikZ pur dessiné directement au moment de la compilation. Le design original a été réalisé au format SVG (disponible dans le dossier `assets/`), puis converti de manière transparente en code LaTeX grâce à l'extension Inkscape **[svg2tikz](https://github.com/xyz2tex/svg2tikz)**.
