@@ -22,7 +22,7 @@ Un guide complet se trouve dans `myrtille-guide.pdf`. Ce guide a été compilé 
 
 ## Ajouter de nouveaux langages de code
 
-La classe intègre une puissante macro abstraite pour générer de nouveaux blocs de code avec barre latérale colorée en une seule ligne. Dans votre préambule, ajoutez simplement :
+La classe intègre une macro pour générer de nouveaux blocs de code avec barre latérale colorée en une seule ligne. Dans votre préambule, ajoutez simplement :
 
 ```latex
 % Syntaxe : \newmyrtilleblock[Options]{nom_env}{Langage_listings}{Couleur_barre}
