@@ -86,10 +86,10 @@
   \vspace{2pt}%                    % espace entre texte et liseré
   {\color{accent}\rule{\linewidth}{\headrulewidth}}%
 }
-\fancyhead[L]{\color{mid}\small\sffamily Myrtille \textbf{·} Charte Graphique}
+% On remplace le texte codé en dur par la variable \@headerleft
+\fancyhead[L]{\color{mid}\small\sffamily\@headerleft}
 \fancyhead[R]{\color{mid}\small\sffamily\leftmark}
 \fancyfoot[C]{\color{mid}\small\thepage}
-
 % ── Titres de sections ───────────────────────────────────────
 \RequirePackage{titlesec}
 \titleformat{\section}{}{}{0pt}{%
@@ -248,6 +248,9 @@
 
 \def\@coverfooter{}
 \newcommand{\coverfooter}[1]{\def\@coverfooter{#1}}
+
+\def\@headerleft{}
+\newcommand{\headerleft}[1]{\def\@headerleft{#1}}
 
 % Interrupteur pour afficher la version (désactivé par défaut)
 \newif\ifshowversion

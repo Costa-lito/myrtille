@@ -1,3 +1,4 @@
+% This work is distributed under the MIT License.
 % ============================================================
 %  Myrtille — Charte Graphique — Style moderne
 % ============================================================
@@ -14,6 +15,9 @@
 % ── Encodage ─────────────────────────────────────────────────
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
+
+% ── Images ───────────────────────────────────────────────────
+\RequirePackage{graphicx}
 
 % ── Police sans-serif globale (Helvetica / Courier) ──────────
 \RequirePackage[scaled=0.92]{inter}
@@ -82,10 +86,10 @@
   \vspace{2pt}%                    % espace entre texte et liseré
   {\color{accent}\rule{\linewidth}{\headrulewidth}}%
 }
-\fancyhead[L]{\color{mid}\small\sffamily Myrtille \textbf{·} Charte Graphique}
+% On remplace le texte codé en dur par la variable \@headerleft
+\fancyhead[L]{\color{mid}\small\sffamily\@headerleft}
 \fancyhead[R]{\color{mid}\small\sffamily\leftmark}
 \fancyfoot[C]{\color{mid}\small\thepage}
-
 % ── Titres de sections ───────────────────────────────────────
 \RequirePackage{titlesec}
 \titleformat{\section}{}{}{0pt}{%
@@ -229,6 +233,144 @@
     before skip=6pt, after skip=6pt, fontupper=\sffamily\footnotesize\color{mid}]#1\end{tcolorbox}%
 }
 
+% ── Encadrés d'images ────────────────────────────────────────
+
+% --- imgbox : carte image moderne ---
+% Usage : \begin{imgbox}[Légende]{chemin/image}
+%   Texte optionnel sous l'image
+% \end{imgbox}
+% ── Initialisation des variables pour la mesure de l'image ──
+\newsavebox{\myrtilleimgbox}
+\newlength{\myrtilleimgwidth}
+% ── Environnement imgbox ─────────────────────────────────────
+
+\newenvironment{imgbox}[3][]{%
+  \vspace{10pt}\noindent\centering
+  
+  % 1. Mesure et ajustement de l'image (identique)
+  \sbox{\myrtilleimgbox}{%
+    \def\tempwidth{#2}%
+    \ifx\tempwidth\empty
+      \includegraphics{#3}%
+    \else
+      \includegraphics[width=#2]{#3}%
+    \fi
+  }%
+  \setlength{\myrtilleimgwidth}{\wd\myrtilleimgbox}%
+  
+  % 2. Sécurité (identique)
+  \ifdim\dimexpr\myrtilleimgwidth+3pt\relax>\linewidth
+    \setlength{\myrtilleimgwidth}{\dimexpr\linewidth-3pt\relax}%
+    \sbox{\myrtilleimgbox}{\includegraphics[width=\myrtilleimgwidth]{#3}}%
+  \fi
+  
+  % 3. Boîte externe : AJOUT DE LA BORDURE FINE TOUT AUTOUR
+  \begin{tcolorbox}[
+    enhanced, colback=white, colframe=accent,
+    boxrule=0.4pt, % <-- NOUVEAU : Fin contour bleu sur tout le pourtour
+    leftrule=3pt,  % <-- CONSERVÉ : Liseré épais à gauche
+    arc=6pt,
+    shadow={0pt}{-2pt}{6pt}{black!8},
+    left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
+    width=\dimexpr\myrtilleimgwidth+3pt\relax,
+    center,
+    clip upper % Coupe le coin haut-gauche de l'image pour épouser la bordure arrondie
+  ]
+    \usebox{\myrtilleimgbox}%
+    \par\noindent
+    
+    % 4. Boîte interne (légende) : (identique)
+    \begin{tcolorbox}[
+      enhanced, colback=accentPale, 
+      frame hidden, boxrule=0pt, 
+      arc=4pt, sharp corners=north, % S'imbrique parfaitement dans l'arrondi du bas
+      left=8pt, right=8pt, top=6pt, bottom=6pt,
+      before skip=0pt, after skip=0pt,
+      fontupper=\sffamily\small\color{dark},
+      width=\myrtilleimgwidth
+    ]
+      \def\tempcaption{#1}%
+      \ifx\tempcaption\empty\else
+        {\bfseries\color{accentDark}#1}\par\vspace{2pt}%
+      \fi
+}{%
+    \end{tcolorbox}
+  \end{tcolorbox}
+  \vspace{10pt}
+}
+% --- imgfloat : image + texte côte à côte ---
+% Usage : \begin{imgfloat}{chemin/image}
+%   Texte descriptif à droite de l'image
+% \end{imgfloat}
+\newtcolorbox{imgfloat@inner}[1][]{
+  breakable, colback = accentPale, colframe = accentDark, arc = 4pt,
+  leftrule = 3pt, rightrule = 0.4pt, toprule = 0.4pt, bottomrule = 0.4pt,
+  left = 0pt, right = 8pt, top = 8pt, bottom = 8pt,
+  before skip = 10pt, after skip = 10pt,
+  sidebyside, sidebyside align = top,
+  lefthand width = 0.38\linewidth,
+  fontupper = \sffamily\small\color{dark},
+  fontlower = \sffamily\small\color{dark},
+  #1
+}
+\newenvironment{imgfloat}[1]{
+  \begin{imgfloat@inner}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{#1}
+    \tcblower
+}{%
+  \end{imgfloat@inner}
+}
+
+% --- imgsidenote : miniature dans une note latérale ---
+% Usage : \imgsidenote{chemin/image}{Texte de la note}
+\newcommand{\imgsidenote}[2]{%
+  \begin{tcolorbox}[colback=sidebarBg, colframe=border, arc=3pt,
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    before skip=6pt, after skip=6pt,
+    sidebyside, sidebyside align=center,
+    lefthand width=0.22\linewidth,
+    fontupper=\sffamily\footnotesize\color{mid},
+    fontlower=\sffamily\footnotesize\color{mid}]
+    \includegraphics[width=\linewidth, keepaspectratio]{#1}
+    \tcblower
+    #2
+  \end{tcolorbox}%
+}
+
+% --- \myrfig : figure numérotée rapide Myrtille ---
+% Usage : \myrfig[width=0.6\linewidth]{chemin/image}{Légende}
+\newcommand{\myrfig}[3][width=0.7\linewidth]{%
+  \begin{figure}[htbp]
+    \centering
+    % Image nue (pas de cadre, ou ombre très légère)
+    \begin{tcolorbox}[
+      enhanced, colback=white, colframe=white,
+      arc=4pt, boxrule=0pt,
+      shadow={0pt}{-0.5pt}{1.5pt}{black!8},
+      left=0pt, right=0pt, top=0pt, bottom=0pt,
+      before skip=0pt, after skip=0pt,
+    ]
+      \centering
+      \includegraphics[#1, keepaspectratio]{#2}
+    \end{tcolorbox}
+    % Bande légende sous l'image (même largeur)
+    \vspace{-5.5pt}
+    \noindent
+    \begin{tcolorbox}[
+      colback=accentPale, colframe=accent,
+      arc=0pt, boxrule=0pt, leftrule=2.5pt,
+      left=8pt, right=8pt, top=4pt, bottom=4pt,
+      before skip=0pt, after skip=0pt,
+      fontupper=\sffamily\footnotesize\color{mid},
+    ]
+      \textbf{Figure~\thefigure}\enspace{\color{dark}#3}
+    \end{tcolorbox}
+    \caption*{}% compteur figure incrémenté via refstepcounter ci-dessous
+    \addtocounter{figure}{1}%
+  \end{figure}
+}
+
 % ── Variables de la page de garde ────────────────────────────
 \def\@doctype{DOCUMENTATION}
 \newcommand{\doctype}[1]{\def\@doctype{#1}}
@@ -244,6 +386,9 @@
 
 \def\@coverfooter{}
 \newcommand{\coverfooter}[1]{\def\@coverfooter{#1}}
+
+\def\@headerleft{}
+\newcommand{\headerleft}[1]{\def\@headerleft{#1}}
 
 % Interrupteur pour afficher la version (désactivé par défaut)
 \newif\ifshowversion
