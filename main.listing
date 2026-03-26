@@ -1,0 +1,21 @@
+% -- Dans le preambule de votre fichier main.tex --
+\doctype{Manuel technique}
+\title{Projet Open-Source}
+\subtitle{Guide de déploiement et configuration}
+\version{v2.4.1} % Supprimez cette ligne pour masquer le badge
+
+\coverfeatures{
+  \begin{tabular}{@{}ll@{}}
+    \color{white!50}\sffamily\small Chapitre 1 & \color{accent}\sffamily\small \textbullet\ Installation \\[3pt]
+    \color{white!50}\sffamily\small Chapitre 2 & \color{accent}\sffamily\small \textbullet\ Configuration \\
+  \end{tabular}
+}
+
+\coverfooter{Généré automatiquement le \today}
+
+% -- Apres le \begin{document} --
+\begin{dοcument}
+
+\makecover
+
+% Suite de votre document...

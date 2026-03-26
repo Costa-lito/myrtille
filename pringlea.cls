@@ -2,7 +2,7 @@
 %  Myrtille — Charte Graphique — Style moderne
 % ============================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{myrtille}[2024/10/25 v1.0 Classe Myrtille]
+\ProvidesClass{pringlea}[2024/10/25 v1.0 Classe Myrtille]
 
 % On passe toutes les options à la classe de base 'article'
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -34,32 +34,36 @@
 \RequirePackage{xcolor}
 
 % --- BEGIN PALETTE ---
-\definecolor{accent}    {HTML}{0D6EFD}   % bleu vif principal
-\definecolor{accentDark}{HTML}{0A4FA8}   % bleu foncé
-\definecolor{accentPale}{HTML}{E8F1FF}   % bleu très clair fond
-\definecolor{dark}      {HTML}{1A1D23}   % quasi-noir texte
-\definecolor{coverBg}   {HTML}{0F2A4A}   % fond couverture bleu marine
-\definecolor{mid}       {HTML}{4A5060}   % gris-bleu texte secondaire
-\definecolor{light}     {HTML}{F0F2F5}   % fond clair
-\definecolor{border}    {HTML}{D0D6E0}   % bords tableaux
-\definecolor{codeBg}    {HTML}{F1F4F9}   % fond code light
-\definecolor{codeText}  {HTML}{1A2540}   % texte code
-\definecolor{codeKw}    {HTML}{0550AE}   % keywords
-\definecolor{codeStr}   {HTML}{1A7F37}   % strings
-\definecolor{codeCmt}   {HTML}{7A8599}   % commentaires
-\definecolor{inlineCode}{HTML}{0D6EFD}   % code inline couleur
-\definecolor{inlineBg}  {HTML}{EEF3FF}   % code inline fond
-\definecolor{success}   {HTML}{198754}
-\definecolor{warn}      {HTML}{FFC107}
-\definecolor{warnDark}  {HTML}{664D03}
-\definecolor{warnBg}    {HTML}{FFF8E1}
-\definecolor{infoGreen} {HTML}{0F5132}
-\definecolor{infoBg}    {HTML}{D1E7DD}
-\definecolor{tableHdr}  {HTML}{E8F1FF}
-\definecolor{sidebarBg} {HTML}{F6F8FC}
-\definecolor{coverAccent}{HTML}{6C95CB} % Cercle décoratif page de garde
-\definecolor{customPurple}{HTML}{8E44AD} 
+% --- Palette Principale Pringlea (Sérieux & Moderne) ---
+\definecolor{accent}      {HTML}{0D9488} % Vert Canard / Teal (Sérieux, pro et moderne)
+\definecolor{accentDark}  {HTML}{0F766E} % Sarcelle sombre (Pour titres et boutons)
+\definecolor{accentPale}  {HTML}{F0FDFA} % Givre de mer très clair (Fonds de section)
+\definecolor{dark}        {HTML}{0F172A} % Bleu-Ardoise très sombre (Texte principal ultra-net)
+\definecolor{coverBg}     {HTML}{134E4A} % Vert forêt profond (Remplace le marine, très statutaire)
+\definecolor{mid}         {HTML}{475569} % Gris acier (Texte secondaire)
+\definecolor{light}       {HTML}{F8FAFC} % Blanc bleuté (Fond clean)
+\definecolor{border}      {HTML}{E2E8F0} % Gris bordure pro
+\definecolor{tableHdr}    {HTML}{F1F5F9} % Gris neutre (Entêtes)
+\definecolor{sidebarBg}   {HTML}{F8FAFC} % Fond latéral
+\definecolor{coverAccent}{HTML}{5EEAD4} % Aquamarine clair (Éclat sur fond sombre)
+\definecolor{customPurple}{HTML}{6366F1} % Indigo (Pour le contraste ponctuel)
 
+% --- Syntaxe & Code ---
+\definecolor{codeBg}      {HTML}{F1F5F9} 
+\definecolor{codeText}    {HTML}{1E293B} 
+\definecolor{codeKw}      {HTML}{0D9488} % Keywords en Teal
+\definecolor{codeStr}     {HTML}{0891B2} % Strings Cyan profond
+\definecolor{codeCmt}     {HTML}{94A3B8} 
+\definecolor{inlineCode}  {HTML}{0F766E} 
+\definecolor{inlineBg}    {HTML}{E6FFFA} 
+
+% --- Sémantique (Équilibrée) ---
+\definecolor{success}     {HTML}{059669} % Vert standard succès
+\definecolor{warn}        {HTML}{EA580C} % Orange brûlé (Plus sérieux que le jaune)
+\definecolor{warnDark}    {HTML}{7C2D12} 
+\definecolor{warnBg}      {HTML}{FFF7ED} 
+\definecolor{infoGreen}   {HTML}{2563EB} % Bleu conservé pour l'INFO (Rappel de fiabilité)
+\definecolor{infoBg}      {HTML}{EFF6FF}
 % --- END PALETTE ---
 
 % ── TikZ (décorations page de garde + badges) ────────────────

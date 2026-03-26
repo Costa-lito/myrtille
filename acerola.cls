@@ -2,7 +2,7 @@
 %  Myrtille — Charte Graphique — Style moderne
 % ============================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{myrtille}[2024/10/25 v1.0 Classe Myrtille]
+\ProvidesClass{acerola}[2024/10/25 v1.0 Classe Myrtille]
 
 % On passe toutes les options à la classe de base 'article'
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -34,32 +34,36 @@
 \RequirePackage{xcolor}
 
 % --- BEGIN PALETTE ---
-\definecolor{accent}    {HTML}{0D6EFD}   % bleu vif principal
-\definecolor{accentDark}{HTML}{0A4FA8}   % bleu foncé
-\definecolor{accentPale}{HTML}{E8F1FF}   % bleu très clair fond
-\definecolor{dark}      {HTML}{1A1D23}   % quasi-noir texte
-\definecolor{coverBg}   {HTML}{0F2A4A}   % fond couverture bleu marine
-\definecolor{mid}       {HTML}{4A5060}   % gris-bleu texte secondaire
-\definecolor{light}     {HTML}{F0F2F5}   % fond clair
-\definecolor{border}    {HTML}{D0D6E0}   % bords tableaux
-\definecolor{codeBg}    {HTML}{F1F4F9}   % fond code light
-\definecolor{codeText}  {HTML}{1A2540}   % texte code
-\definecolor{codeKw}    {HTML}{0550AE}   % keywords
-\definecolor{codeStr}   {HTML}{1A7F37}   % strings
-\definecolor{codeCmt}   {HTML}{7A8599}   % commentaires
-\definecolor{inlineCode}{HTML}{0D6EFD}   % code inline couleur
-\definecolor{inlineBg}  {HTML}{EEF3FF}   % code inline fond
-\definecolor{success}   {HTML}{198754}
-\definecolor{warn}      {HTML}{FFC107}
-\definecolor{warnDark}  {HTML}{664D03}
-\definecolor{warnBg}    {HTML}{FFF8E1}
-\definecolor{infoGreen} {HTML}{0F5132}
-\definecolor{infoBg}    {HTML}{D1E7DD}
-\definecolor{tableHdr}  {HTML}{E8F1FF}
-\definecolor{sidebarBg} {HTML}{F6F8FC}
-\definecolor{coverAccent}{HTML}{6C95CB} % Cercle décoratif page de garde
-\definecolor{customPurple}{HTML}{8E44AD} 
+% --- Palette Principale ACEROLA (Frais et Professionnel) ---
+\definecolor{accent}      {HTML}{E11D48} % Rouge Cerise vif (moderne, pas agressif)
+\definecolor{accentDark}  {HTML}{9F1239} % Bordeaux profond (pour le survol/titres)
+\definecolor{accentPale}  {HTML}{FFF1F2} % Rose givré très clair (fond de section)
+\definecolor{dark}        {HTML}{18181B} % Zinc très sombre (texte principal net)
+\definecolor{coverBg}     {HTML}{4C0519} % Vin sombre (fond couverture élégant)
+\definecolor{mid}         {HTML}{52525B} % Gris neutre (texte secondaire)
+\definecolor{light}       {HTML}{FAFAFA} % Gris très clair (fond page web)
+\definecolor{border}      {HTML}{E4E4E7} % Gris bordure moderne
+\definecolor{tableHdr}    {HTML}{FFF1F2} % Rose pâle (entête tableau)
+\definecolor{sidebarBg}   {HTML}{F4F4F5} % Gris neutre clair (sidebar)
+\definecolor{coverAccent}{HTML}{FDA4AF} % Rose pêche doux (lisible sur coverBg)
+\definecolor{customPurple}{HTML}{7C3AED} % Violet (accent secondaire conservé)
 
+% --- Syntaxe & Code (Harmonie Ruby) ---
+\definecolor{codeBg}      {HTML}{F8FAFC} % Fond de code très neutre
+\definecolor{codeText}    {HTML}{0F172A} % Texte code sombre
+\definecolor{codeKw}      {HTML}{BE123C} % Keywords rouge carmin
+\definecolor{codeStr}     {HTML}{059669} % Strings vert émeraude (contraste essentiel)
+\definecolor{codeCmt}     {HTML}{71717A} % Commentaires gris
+\definecolor{inlineCode}  {HTML}{E11D48} % Code inline rouge
+\definecolor{inlineBg}    {HTML}{FFE4E6} % Fond code inline
+
+% --- Sémantique (Équilibre des couleurs) ---
+\definecolor{success}     {HTML}{10B981} % Vert émeraude
+\definecolor{warn}        {HTML}{F59E0B} % Ambre
+\definecolor{warnDark}    {HTML}{78350F} 
+\definecolor{warnBg}      {HTML}{FEF3C7} 
+\definecolor{infoGreen}   {HTML}{0EA5E9} % Bleu ciel pour l'info (tranche avec le rouge)
+\definecolor{infoBg}      {HTML}{F0F9FF}
 % --- END PALETTE ---
 
 % ── TikZ (décorations page de garde + badges) ────────────────
