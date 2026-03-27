@@ -1,0 +1,453 @@
+% This work is distributed under the MIT License.
+\section{Introduction}
+Pringlea est une charte graphique pensée pour produire des documents techniques avec un rendu clair et moderne. Son utilisation est faite pour être simple grâce à l'utilisation d'une classe \LaTeX{} standard. Pringlea est dérivée de la classe Myrille dont elle reprend les éléments et mises en page mais change totalement la palette de couleurs pour s'orienter vers des teintes vert canard.
+
+% ── SECTION 1 : COULEURS ───────────────────────────────────────
+\section{Palette de Couleurs}
+
+Cette section détaille l'ensemble des couleurs définies dans la classe de Pringlea. Elles sont organisées par thématique pour faciliter leur utilisation. 
+
+\subsection{Couleurs Principales (Thème)}
+Ces couleurs constituent l'identité visuelle de base et sont utilisées pour les éléments mis en évidence (titres, liens, bordures principales).
+
+\vspace{10pt}
+\colorswatch{accent}{0D6EFD}
+\colorswatch{accentDark}{0A4FA8}
+\colorswatch{accentPale}{E8F1FF}
+\colorswatch{coverBg}{0F2A4A}
+
+\subsection{Couleurs Neutres (Texte et Fonds)}
+Ces nuances de gris et de couleurs pâles structurent le document, assurent la lisibilité du texte et définissent les arrière-plans secondaires.
+
+\vspace{10pt}
+\colorswatch{dark}{1A1D23}
+\colorswatch{mid}{4A5060}
+\colorswatch{light}{F0F2F5}
+\colorswatch{border}{D0D6E0}
+\colorswatch{sidebarBg}{F6F8FC}
+
+\subsection{Statuts et Alertes}
+Ces couleurs sont strictement réservées aux boîtes de messages et aux badges indiquant un état particulier (succès, avertissement, information).
+
+\vspace{10pt}
+\colorswatch{success}{198754}
+\colorswatch{warn}{FFC107}
+\colorswatch{warnDark}{664D03}
+\colorswatch{warnBg}{FFF8E1}
+\colorswatch{infoGreen}{0F5132}
+\colorswatch{infoBg}{D1E7DD}
+
+\subsection{Coloration Syntaxique (Code)}
+Utilisées en arrière-plan et pour coloriser les éléments des blocs de code (mots-clés, chaînes de caractères, commentaires).
+
+\vspace{10pt}
+\colorswatch{codeBg}{F1F4F9}
+\colorswatch{codeText}{1A2540}
+\colorswatch{codeKw}{0550AE}
+\colorswatch{codeStr}{1A7F37}
+\colorswatch{codeCmt}{7A8599}
+\colorswatch{inlineCode}{0D6EFD}
+
+
+% ── SECTION 2 : TYPOGRAPHIE ET TITRES ──────────────────────────
+\section{Typographie et Hiérarchie}
+
+Le document utilise la police sans-serif (Inter) pour un rendu moderne et épuré.
+
+\subsection{Ceci est un titre de Sous-section (\texttt{\textbackslash subsection})}
+Le texte des paragraphes standards s'affiche dans la couleur noire par défaut du document. L'espacement entre les paragraphes est géré automatiquement sans indentation, offrant un confort de lecture optimal.
+
+\subsubsection{Ceci est un titre de Sous-sous-section (\texttt{\textbackslash subsubsection})}
+Les titres de niveau 3 utilisent la couleur \texttt{mid} pour marquer une séparation subtile dans le contenu sans surcharger visuellement la page. 
+
+\vspace{10pt}
+\hrulefull
+\\La ligne ci-dessus est générée avec la commande \ci{\textbackslash hrulefull}, idéale pour séparer deux grandes idées au sein d'une même section.
+
+
+% ── SECTION 3 : LISTES ET BADGES ───────────────────────────────
+\section{Éléments de texte et Badges}
+
+\subsection{Listes à puces et numérotées}
+
+Voici un exemple de liste non ordonnée (\texttt{itemize}) avec différents niveaux :
+\begin{itemize}
+    \item Premier point de la liste principale.
+    \item Deuxième point avec une sous-liste :
+    \begin{itemize}
+        \item Élément secondaire A.
+        \item Élément secondaire B.
+    \end{itemize}
+    \item Troisième point.
+\end{itemize}
+
+Voici un exemple de liste ordonnée (\texttt{enumerate}) :
+\begin{enumerate}
+    \item Étape numéro un de la procédure.
+    \item Étape numéro deux, qui suit logiquement la première.
+    \item Étape finale du processus.
+\end{enumerate}
+
+\subsection{Badges et Code en ligne}
+
+Les badges sont conçus pour qualifier rapidement des informations (type de variable, obligation, etc.).
+Le code en ligne s'écrit avec la commande \ci{\textbackslash ci\{...\}}. Exemple : la variable \ci{config\_path} doit être définie.
+
+\vspace{10pt}
+\begin{tabularx}{\textwidth}{L{4cm} X}
+    \toprule
+    \rowcolor{tableHdr}
+    \textbf{Commande} & \textbf{Rendu visuel et Usage} \\
+    \midrule
+    \ci{\textbackslash badgeReq} & \badgeReq ~ — Indique qu'un paramètre est obligatoire. \\
+    \ci{\textbackslash badgeOpt} & \badgeOpt ~ — Indique qu'un paramètre est facultatif. \\
+    \ci{\textbackslash badgeInt} & \badgeInt ~ — Type de donnée entier. \\
+    \ci{\textbackslash badgeFloat} & \badgeFloat ~ — Type de donnée flottant. \\
+    \ci{\textbackslash badgeStr} & \badgeStr ~ — Type de donnée chaîne de caractères. \\
+    \ci{\textbackslash badgeMat} & \badgeMat ~ — Type matriciel ou array. \\
+    \ci{\textbackslash badgePolar} & \badgePolar ~ — Coordonnées polaires. \\
+    \bottomrule
+\end{tabularx}
+
+
+% ── SECTION 4 : CRÉATION DE BADGES PERSONNALISÉS ───────────────
+\section{Création de Badges Personnalisés}
+
+La classe met à disposition une macro racine \ci{\textbackslash badge[couleur]\{texte\}} qui permet de générer de nouveaux badges en quelques secondes.
+
+\subsection{À partir d'une couleur existante}
+Si la couleur dont vous avez besoin figure déjà dans la palette (par exemple \texttt{infoGreen}), ajoutez simplement une nouvelle commande dans le préambule de votre document :
+
+\begin{texblock}
+\newcommand{\badgeNouveau}{\badge[infoGreen]{Nouveau}}
+\end{texblock}
+
+\textbf{Résultat visuel :} \badgeNouveau
+
+\subsection{À partir d'une couleur inédite}
+Bien que ce ne soit pas recommandé, si vous souhaitez utiliser une teinte qui n'est pas dans la charte standard, vous devez la définir avec \ci{\textbackslash definecolor}, puis créer le badge :
+
+\begin{texblock}
+% 1. Déclarer la couleur dans le préambule
+\definecolor{customPurple}{HTML}{8E44AD}
+
+% 2. Créer la commande associée
+\newcommand{\badgePerso}{\badge[customPurple]{Spécial}}
+\end{texblock}
+
+\textbf{Résultat visuel :} \badgePerso
+
+
+% ── SECTION 5 : BOÎTES D'INFORMATION ───────────────────────────
+\section{Blocs d'Information et Notes}
+
+Ces environnements permettent de mettre en évidence des informations cruciales.
+
+\subsection{Boîte d'Information (\texttt{infobox})}
+\begin{infobox}
+    \textbf{Astuce :} Ceci est une boîte d'information générée avec \ci{\textbackslash begin\{infobox\}}. Elle utilise les couleurs \texttt{accentPale} pour le fond et \texttt{accent} pour la bordure. Elle est idéale pour les remarques, astuces ou compléments d'information.
+\end{infobox}
+
+\subsection{Boîte d'Avertissement (\texttt{warnbox})}
+\begin{warnbox}
+    \textbf{Attention :} Ceci est une boîte d'avertissement générée avec \ci{\textbackslash begin\{warnbox\}}. Elle utilise des nuances de jaune/brun pour capter l'attention de l'utilisateur sur une action potentiellement destructrice ou une contrainte forte.
+\end{warnbox}
+
+\subsection{Note de Marge (\texttt{sidenote})}
+\sidenote{Ceci est une note latérale (\texttt{\textbackslash sidenote}). Elle utilise un fond discret \texttt{sidebarBg} et une bordure \texttt{border}. Parfaite pour les métadonnées, les renvois bibliographiques ou des détails techniques très spécifiques.}
+
+\subsection{Notes de bas de page (Symboliques)}
+
+La classe Pringlea utilise par défaut un système de notes de bas de page symboliques\footnote{Ceci est un exemple de note de bas de page symbolique.} plutôt que numériques. Cela permet d'éviter toute confusion avec des appels de bibliographie ou des exposants mathématiques, tout en apportant une touche d'élégance éditoriale.
+
+L'ordre d'apparition des symboles (géré automatiquement par \LaTeX) est le suivant :
+
+\begin{enumerate}
+    \item Astérisque (*)
+    \item Obèle / Dague (\textdagger)
+    \item Double obèle (\textdaggerdbl)
+    \item Section (\textsection)
+    \item Pied de mouche (\textparagraph)
+    \item Parallèles (\textbardbl)
+\end{enumerate}
+
+\textbf{Note :} Si le document comporte plus de 6 notes sur une même page, le système doublera automatiquement les symboles (**, \textdagger\textdagger, etc.).
+
+\textbf{Code source :}
+\begin{texblock}
+Voici une affirmation importante qui nécessite une source\footnote{La source s'affichera en bas de page avec un astérisque ou le symbole suivant.}.
+\end{texblock}
+
+% ── SECTION 6 : ENVIRONNEMENTS MATHÉMATIQUES ───────────────────
+\section{Environnements Mathématiques}
+
+La classe Pringlea intègre des boîtes spécifiques pour mettre en valeur les théorèmes, propriétés et définitions. Ces environnements sont numérotés automatiquement par section et supportent les références croisées.
+
+\subsection{Théorèmes et Propriétés (\texttt{myrthm})}
+
+L'environnement \ci{myrthm} utilise la couleur bleue principale (\texttt{accent}) pour encadrer les résultats mathématiques ou logiques importants. Il prend deux arguments obligatoires : le titre du théorème, et un label pour y faire référence plus tard.
+
+\begin{myrthm}{Théorème de Pythagore}{pythagore}
+  Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés.
+  \[ a^2 + b^2 = c^2 \]
+\end{myrthm}
+
+\textbf{Code source :}
+\begin{texblock}
+\begin{myrthm}{Théorème de Pythagore}{pythagore}
+  Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés.
+  \[ a^2 + b^2 = c^2 \]
+\end{myrthm}
+\end{texblock}
+
+\subsection{Définitions (\texttt{myrdef})}
+
+L'environnement \ci{myrdef} s'appuie sur la teinte verte (\texttt{infoGreen}) pour introduire de nouveaux concepts de manière distincte des théorèmes.
+
+\begin{myrdef}{Espace Vectoriel}{espace_vect}
+  Un espace vectoriel sur un corps $K$ est un ensemble muni d'une loi de composition interne (l'addition) et d'une loi de composition externe (la multiplication par un scalaire).
+\end{myrdef}
+
+\textbf{Code source :}
+\begin{texblock}
+\begin{myrdef}{Espace Vectoriel}{espace_vect}
+  Un espace vectoriel sur un corps $K$ est un ensemble muni d'une loi de composition interne (l'addition) et d'une loi de composition externe (la multiplication par un scalaire).
+\end{myrdef}
+\end{texblock}
+
+\subsection{Références croisées}
+
+Le fonctionnement de ces boîtes intègre nativement la gestion des labels. Le deuxième argument que vous renseignez (par exemple \ci{pythagore}) génère automatiquement un identifiant interne préfixé par le type de boîte.
+
+Pour faire référence à ces éléments dans votre texte, utilisez la commande standard \ci{\textbackslash ref\{...\}} accompagnée des préfixes \ci{thm:} ou \ci{def:} :
+
+\begin{itemize}
+    \item Pour citer le théorème précédent : \ci{\textbackslash ref\{thm:pythagore\}}
+    \item Pour citer la définition précédente : \ci{\textbackslash ref\{def:espace\_vect\}}
+\end{itemize}
+
+% ── BLOCS DE CODE ──────────────────────────────────
+\section{Blocs de Code}
+
+La classe définit plusieurs environnements distincts, basés sur \texttt{tcolorbox} et \texttt{listings}, pour présenter du code source de manière élégante avec une barre latérale colorée.
+
+\subsection{Code Python (\texttt{pyblock})}
+\begin{pyblock}
+def calculer_trajectoire(vitesse, angle):
+    """Calcule la trajectoire en fonction de la vitesse et l'angle."""
+    g = 9.81
+    distance = (vitesse ** 2) * math.sin(2 * angle) / g
+    return distance
+
+# Exemple d'utilisation
+print(f"Distance : {calculer_trajectoire(15, 45)}")
+\end{pyblock}
+
+\subsection{Code JSON (\texttt{jsonblock})}
+\begin{jsonblock}
+{
+  "project": "Pringlea",
+  "version": "1.0",
+  "dependencies": {
+    "pyside6": "^6.5.0",
+    "numpy": ">=1.24"
+  },
+  "active": true
+}
+\end{jsonblock}
+
+\subsection{Code Shell (\texttt{shblock})}
+\begin{shblock}
+#!/bin/bash
+# Installation des dépendances
+pip install -r requirements.txt
+python main.py --config config.json
+\end{shblock}
+
+\subsection{Code LaTeX (\texttt{texblock})}
+\begin{texblock}
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+% Ceci est un commentaire LaTeX
+\begin{dοcument}
+\section{Titre Principal}
+Ceci est un exemple de code source \LaTeX{} affiché dans la documentation.
+\end{dοcument}
+\end{texblock}
+
+\subsection{Ajouter de nouveaux langages}
+La classe inclut une macro génératrice abstraite permettant d'ajouter très facilement de nouveaux langages pris en charge par le package \texttt{listings}. 
+
+La syntaxe à utiliser dans votre préambule est la suivante :
+\begin{texblock}
+\newmyrtilleblock[Options]{nom_environnement}{Langage}{Couleur_barre}
+\end{texblock}
+
+\textbf{Exemple pour ajouter du JavaScript avec une bordure verte (\texttt{success}) :}
+\begin{texblock}
+\newmyrtilleblock{jsblock}{JavaScript}{success}
+\end{texblock}
+
+\textbf{Exemple pour du HTML sans numéros de ligne :}
+\begin{texblock}
+\newmyrtilleblock[numbers=none]{htmlblock}{HTML}{warn}
+\end{texblock}
+
+
+% ── TABLEAUX ───────────────────────────────────────
+\section{Tableaux}
+
+Les tableaux utilisent les extensions \texttt{booktabs} et \texttt{tabularx} pour un rendu professionnel. L'en-tête du tableau est coloré avec \texttt{tableHdr}.
+
+\vspace{10pt}
+\begin{tabularx}{\textwidth}{L{3cm} L{3cm} X}
+    \toprule
+    \rowcolor{tableHdr}
+    \textbf{Paramètre} & \textbf{Type} & \textbf{Description} \\
+    \midrule
+    \texttt{host} & \badgeStr ~ \badgeReq & Adresse IP ou nom d'hôte du serveur cible. \\
+    \texttt{port} & \badgeInt ~ \badgeOpt & Port de connexion (par défaut : 8080). \\
+    \texttt{timeout} & \badgeFloat ~ \badgeOpt & Délai d'attente maximum en secondes avant l'abandon. \\
+    \texttt{matrix\_data} & \badgeMat ~ \badgeReq & Jeu de données sous forme de matrice bi-dimensionnelle. \\
+    \bottomrule
+\end{tabularx}
+
+
+% ── ENCADRÉS D'IMAGES ─────────────────────────────
+\section{Encadrés d'Images}
+
+La classe Pringlea propose plusieurs environnements pour intégrer des images de manière élégante et cohérente avec la charte graphique. Chaque encadré est conçu pour un usage précis : mise en valeur, comparaison texte-image, note latérale ou figure numérotée.
+
+\subsection{Carte image (\texttt{imgbox})}
+
+L'environnement \ci{imgbox} affiche une image dans une carte moderne avec ombre portée et coins arrondis. L'image occupe toute la largeur de la carte, suivie d'une bande de légende colorée avec barre latérale accent. Le titre est optionnel.
+
+\begin{imgbox}[Pringlea — Pringlea antiscorbutica]{12cm}{pringlea.jpg}
+  \footnotesize\color{mid}\textit{Le chou de Kerguelen, plante emblématique qui donne son nom à cette charte graphique.}
+\end{imgbox}
+
+\textbf{Code source :}
+\begin{texblock}
+\begin{imgbox}[Légende du titre]{12cm}{chemin/vers/image.jpg} % Laisser la taille vide pour auto
+  Texte optionnel sous l'image.
+\end{imgbox}
+\end{texblock}
+
+\subsection{Image et texte côte à côte (\texttt{imgfloat})}
+
+L'environnement \ci{imgfloat} place l'image à gauche et un texte descriptif à droite, dans un encadré à barre latérale sombre. Idéal pour documenter des captures d'écran ou illustrer un concept.
+
+\begin{imgfloat}{pringlea.jpg}
+  \textbf{Pringlea antiscorbutica}
+
+  La pringlea (ou chou de Kerguelen) est une plante endémique robuste aux larges feuilles charnues, d'un vert profond. Elle pousse naturellement dans les environnements froids et isolés des îles subantarctiques.
+
+  \vspace{4pt}
+  Son nom a été choisi pour cette charte car il évoque la robustesse, le sérieux et la profondeur des teintes vert canard et forêt utilisées dans la palette de couleurs Pringlea.
+\end{imgfloat}
+
+\textbf{Code source :}
+\begin{texblock}
+\begin{imgfloat}{chemin/vers/image.jpg}
+  Texte descriptif à droite de l'image.
+\end{imgfloat}
+\end{texblock}
+
+\subsection{Note latérale illustrée (\texttt{\textbackslash imgsidenote})}
+
+La commande \ci{\textbackslash imgsidenote} fonctionne comme \ci{\textbackslash sidenote}, mais avec une miniature à gauche. Parfaite pour un renvoi visuel discret vers un schéma ou une référence graphique.
+
+\imgsidenote{pringlea.jpg}{Cette miniature de la pringlea illustre l'utilisation de la commande \texttt{\textbackslash imgsidenote}, idéale pour associer une petite image à une note informative sans perturber le flux du texte.}
+
+\textbf{Code source :}
+\begin{texblock}
+\imgsidenote{chemin/vers/image.jpg}{Texte de la note latérale.}
+\end{texblock}
+
+\subsection{Figure numérotée (\texttt{\textbackslash myrfig})}
+
+La commande \ci{\textbackslash myrfig} génère une figure flottante numérotée automatiquement avec une légende, entourée d'un cadre fin et discret. Elle accepte un argument optionnel pour contrôler la largeur de l'image.
+
+\myrfig[width=0.5\linewidth]{pringlea.jpg}{La pringlea (\textit{Pringlea antiscorbutica}), plante éponyme de la charte graphique.}
+
+\textbf{Code source :}
+\begin{texblock}
+% Largeur par défaut (70% de la ligne)
+\myrfig{chemin/vers/image.jpg}{Légende de la figure}
+
+% Largeur personnalisée
+\myrfig[width=0.5\linewidth]{chemin/vers/image.jpg}{Légende}
+\end{texblock}
+
+\subsection{Récapitulatif des environnements}
+
+\vspace{10pt}
+\begin{tabularx}{\textwidth}{L{3.5cm} L{3.5cm} X}
+    \toprule
+    \rowcolor{tableHdr}
+    \textbf{Environnement} & \textbf{Type} & \textbf{Usage} \\
+    \midrule
+    \ci{imgbox} & Environnement & Image encadrée avec titre et légende descriptive. \\
+    \ci{imgfloat} & Environnement & Image à gauche, texte explicatif à droite. \\
+    \ci{\textbackslash imgsidenote} & Commande & Miniature + note latérale discrète. \\
+    \ci{\textbackslash myrfig} & Commande & Figure flottante numérotée avec cadre fin. \\
+    \bottomrule
+\end{tabularx}
+% ── PAGE DE GARDE ──────────────────────────────────
+\section{Page de Garde}
+
+La classe Pringlea intègre un générateur automatique de page de garde. La personnalisation s'effectue de manière claire et centralisée dans le préambule de votre document (avant le \ci{\textbackslash begin\{document\}}), à l'aide de macros dédiées.
+
+\subsection{Variables de configuration}
+
+Voici l'ensemble des commandes disponibles pour personnaliser les textes de votre couverture :
+
+\begin{itemize}
+    \item \ci{\textbackslash doctype\{...\}} : Le type de document (affiché en majuscules au-dessus du titre, ex: DOCUMENTATION, MANUEL).
+    \item \ci{\textbackslash title\{...\}} : Le titre principal du document.
+    \item \ci{\textbackslash subtitle\{...\}} : Le sous-titre ou la description courte.
+    \item \ci{\textbackslash version\{...\}} : Le numéro de version affiché dans le badge en haut à droite (ex: v1.0). \textbf{Note :} Si cette commande est omise ou supprimée, le badge ne s'affichera tout simplement pas.
+    \item \ci{\textbackslash coverfeatures\{...\}} : Un bloc libre, souvent utilisé pour insérer un petit tableau listant les points clés ou les chapitres principaux.
+    \item \ci{\textbackslash coverfooter\{...\}} : Le texte discret affiché tout en bas de la page.
+\end{itemize}
+
+\subsection{Génération de la page}
+
+Une fois les variables définies, il suffit d'appeler la commande \ci{\textbackslash makecover} juste après le début de votre document. Voici un exemple complet d'utilisation :
+
+\begin{texblock}
+% -- Dans le preambule de votre fichier main.tex --
+\doctype{Manuel technique}
+\title{Projet Open-Source}
+\subtitle{Guide de déploiement et configuration}
+\version{v2.4.1} % Supprimez cette ligne pour masquer le badge
+
+\coverfeatures{
+  \begin{tabular}{@{}ll@{}}
+    \color{white!50}\sffamily\small Chapitre 1 & \color{accent}\sffamily\small \textbullet\ Installation \\[3pt]
+    \color{white!50}\sffamily\small Chapitre 2 & \color{accent}\sffamily\small \textbullet\ Configuration \\
+  \end{tabular}
+}
+
+\coverfooter{Généré automatiquement le \today}
+
+% -- Apres le \begin{document} --
+\begin{dοcument}
+
+\makecover
+
+% Suite de votre document...
+\end{texblock}
+
+
+% --- Section Licences ---
+\section{Licences et Crédits}
+\addcontentsline{toc}{section}{Licences et Crédits}
+
+\begin{description}
+    \item[Auteur :] Ce projet et ce document ont été créés par \textbf{Costa Zaffani-Le Carpentier}.
+    \item[Code source :] Code source \texttt{.tex} et classes \texttt{.cls} sous licence \textbf{MIT}.
+    \item[Image \textit{pringlea.jpg} :] Par \textbf{Bruno Navez} (\href{https://commons.wikimedia.org/wiki/File:Pringlea_antiscorbutica.JPG}{Source}) sous licence \href{https://creativecommons.org/licenses/by-sa/3.0/deed.fr}{CC-BY-SA 3.0}.
+    \item[Document PDF :] Ce document est mis à disposition sous licence \href{https://creativecommons.org/licenses/by-sa/4.0/deed.fr}{CC-BY-SA 4.0}.
+\end{description}

@@ -1,6 +1,6 @@
 % This work is distributed under the MIT License.
 % ============================================================
-%  Myrtille — Charte Graphique — Style moderne
+%  Pringlea — Charte Graphique — Style moderne
 % ============================================================
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pringlea}[2024/10/25 v1.0 Classe Myrtille]
