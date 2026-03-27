@@ -34,6 +34,12 @@
 \RequirePackage{textcomp}
 \setstretch{1.08}
 
+% ── Mathématiques ────────────────────────────────────────────
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+
 % ── Couleurs ─────────────────────────────────────────────────
 \RequirePackage{xcolor}
 
@@ -338,36 +344,57 @@
   \end{tcolorbox}%
 }
 
-% --- \myrfig : figure numérotée rapide Myrtille ---
+% --- \myrfig : figure numérotée rapide Myrtille (Nouvelle version) ---
 % Usage : \myrfig[width=0.6\linewidth]{chemin/image}{Légende}
 \newcommand{\myrfig}[3][width=0.7\linewidth]{%
   \begin{figure}[htbp]
     \centering
-    % Image nue (pas de cadre, ou ombre très légère)
+    % 1. Mesure de l'image (réutilise les variables de imgbox)
+    \sbox{\myrtilleimgbox}{%
+      \includegraphics[#1]{#2}%
+    }%
+    \setlength{\myrtilleimgwidth}{\wd\myrtilleimgbox}%
+    
+    % 2. Sécurité : Ajustement si l'image est plus large que la page
+    \ifdim\dimexpr\myrtilleimgwidth+3.4pt\relax>\linewidth
+      \setlength{\myrtilleimgwidth}{\dimexpr\linewidth-3.4pt\relax}%
+      \sbox{\myrtilleimgbox}{\includegraphics[width=\myrtilleimgwidth]{#2}}%
+    \fi
+    
+    % 3. Conteneur principal unifié
     \begin{tcolorbox}[
-      enhanced, colback=white, colframe=white,
-      arc=4pt, boxrule=0pt,
-      shadow={0pt}{-0.5pt}{1.5pt}{black!8},
-      left=0pt, right=0pt, top=0pt, bottom=0pt,
-      before skip=0pt, after skip=0pt,
+      enhanced,
+      width=\dimexpr\myrtilleimgwidth+3.4pt\relax, % Image + bordures (3pt gauche, 0.4pt droite)
+      center,
+      colback=white,
+      colframe=accentDark,
+      boxrule=0.4pt,
+      leftrule=3pt,
+      arc=4pt,
+      shadow={0pt}{-2pt}{6pt}{black!8},
+      left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
+      clip upper % Coupe les coins de l'image pour épouser la bordure
     ]
-      \centering
-      \includegraphics[#1, keepaspectratio]{#2}
+      \usebox{\myrtilleimgbox}%
+      \par\nointerlineskip\noindent % Supprime l'espace parasite sous l'image
+      
+      % 4. Bande de légende imbriquée 
+      \begin{tcolorbox}[
+        enhanced,
+        colback=light,
+        frame hidden,
+        boxrule=0pt,
+        arc=4pt,
+        sharp corners=north, % S'emboîte parfaitement sous l'image
+        left=8pt, right=8pt, top=5pt, bottom=5pt,
+        before skip=0pt, after skip=0pt,
+        width=\myrtilleimgwidth,
+        fontupper=\sffamily\footnotesize\raggedright
+      ]
+        \refstepcounter{figure}% Incrémentation native pour compatibilité avec \label
+        \textbf{\color{accentDark}Figure~\thefigure}\enspace{\color{dark}#3}
+      \end{tcolorbox}
     \end{tcolorbox}
-    % Bande légende sous l'image (même largeur)
-    \vspace{-5.5pt}
-    \noindent
-    \begin{tcolorbox}[
-      colback=accentPale, colframe=accent,
-      arc=0pt, boxrule=0pt, leftrule=2.5pt,
-      left=8pt, right=8pt, top=4pt, bottom=4pt,
-      before skip=0pt, after skip=0pt,
-      fontupper=\sffamily\footnotesize\color{mid},
-    ]
-      \textbf{Figure~\thefigure}\enspace{\color{dark}#3}
-    \end{tcolorbox}
-    \caption*{}% compteur figure incrémenté via refstepcounter ci-dessous
-    \addtocounter{figure}{1}%
   \end{figure}
 }
 
