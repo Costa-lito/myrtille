@@ -1,5 +1,6 @@
+% This work is distributed under the MIT License.
 \section{Introduction}
-Myrtille est une charte graphique pensée pour produire des documents techniques avec un rendu clair et moderne. Son utilisation est faite pour être simple grâce à l'utilisation d'une classe LaTeX standard. 
+Myrtille est une charte graphique pensée pour produire des documents techniques avec un rendu clair et moderne. Son utilisation est faite pour être simple grâce à l'utilisation d'une classe \LaTeX{} standard. 
 
 % ── SECTION 1 : COULEURS ───────────────────────────────────────
 \section{Palette de Couleurs}
@@ -155,8 +156,77 @@ Ces environnements permettent de mettre en évidence des informations cruciales.
 \subsection{Note de Marge (\texttt{sidenote})}
 \sidenote{Ceci est une note latérale (\texttt{\textbackslash sidenote}). Elle utilise un fond discret \texttt{sidebarBg} et une bordure \texttt{border}. Parfaite pour les métadonnées, les renvois bibliographiques ou des détails techniques très spécifiques.}
 
+\subsection{Notes de bas de page (Symboliques)}
 
-% ── SECTION 6 : BLOCS DE CODE ──────────────────────────────────
+La classe Myrtille utilise par défaut un système de notes de bas de page symboliques\footnote{Ceci est un exemple de note de bas de page symbolique.} plutôt que numériques. Cela permet d'éviter toute confusion avec des appels de bibliographie ou des exposants mathématiques, tout en apportant une touche d'élégance éditoriale.
+
+L'ordre d'apparition des symboles (géré automatiquement par \LaTeX) est le suivant :
+
+\begin{enumerate}
+    \item Astérisque (*)
+    \item Obèle / Dague (\textdagger)
+    \item Double obèle (\textdaggerdbl)
+    \item Section (\textsection)
+    \item Pied de mouche (\textparagraph)
+    \item Parallèles (\textbardbl)
+\end{enumerate}
+
+\textbf{Note :} Si le document comporte plus de 6 notes sur une même page, le système doublera automatiquement les symboles (**, \textdagger\textdagger, etc.).
+
+\textbf{Code source :}
+\begin{texblock}
+Voici une affirmation importante qui nécessite une source\footnote{La source s'affichera en bas de page avec un astérisque ou le symbole suivant.}.
+\end{texblock}
+
+% ── SECTION 6 : ENVIRONNEMENTS MATHÉMATIQUES ───────────────────
+\section{Environnements Mathématiques}
+
+La classe Myrtille intègre des boîtes spécifiques pour mettre en valeur les théorèmes, propriétés et définitions. Ces environnements sont numérotés automatiquement par section et supportent les références croisées.
+
+\subsection{Théorèmes et Propriétés (\texttt{myrthm})}
+
+L'environnement \ci{myrthm} utilise la couleur bleue principale (\texttt{accent}) pour encadrer les résultats mathématiques ou logiques importants. Il prend deux arguments obligatoires : le titre du théorème, et un label pour y faire référence plus tard.
+
+\begin{myrthm}{Théorème de Pythagore}{pythagore}
+  Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés.
+  \[ a^2 + b^2 = c^2 \]
+\end{myrthm}
+
+\textbf{Code source :}
+\begin{texblock}
+\begin{myrthm}{Théorème de Pythagore}{pythagore}
+  Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés.
+  \[ a^2 + b^2 = c^2 \]
+\end{myrthm}
+\end{texblock}
+
+\subsection{Définitions (\texttt{myrdef})}
+
+L'environnement \ci{myrdef} s'appuie sur la teinte verte (\texttt{infoGreen}) pour introduire de nouveaux concepts de manière distincte des théorèmes.
+
+\begin{myrdef}{Espace Vectoriel}{espace_vect}
+  Un espace vectoriel sur un corps $K$ est un ensemble muni d'une loi de composition interne (l'addition) et d'une loi de composition externe (la multiplication par un scalaire).
+\end{myrdef}
+
+\textbf{Code source :}
+\begin{texblock}
+\begin{myrdef}{Espace Vectoriel}{espace_vect}
+  Un espace vectoriel sur un corps $K$ est un ensemble muni d'une loi de composition interne (l'addition) et d'une loi de composition externe (la multiplication par un scalaire).
+\end{myrdef}
+\end{texblock}
+
+\subsection{Références croisées}
+
+Le fonctionnement de ces boîtes intègre nativement la gestion des labels. Le deuxième argument que vous renseignez (par exemple \ci{pythagore}) génère automatiquement un identifiant interne préfixé par le type de boîte.
+
+Pour faire référence à ces éléments dans votre texte, utilisez la commande standard \ci{\textbackslash ref\{...\}} accompagnée des préfixes \ci{thm:} ou \ci{def:} :
+
+\begin{itemize}
+    \item Pour citer le théorème précédent : \ci{\textbackslash ref\{thm:pythagore\}}
+    \item Pour citer la définition précédente : \ci{\textbackslash ref\{def:espace\_vect\}}
+\end{itemize}
+
+% ── BLOCS DE CODE ──────────────────────────────────
 \section{Blocs de Code}
 
 La classe définit plusieurs environnements distincts, basés sur \texttt{tcolorbox} et \texttt{listings}, pour présenter du code source de manière élégante avec une barre latérale colorée.
@@ -225,7 +295,7 @@ La syntaxe à utiliser dans votre préambule est la suivante :
 \end{texblock}
 
 
-% ── SECTION 7 : TABLEAUX ───────────────────────────────────────
+% ── TABLEAUX ───────────────────────────────────────
 \section{Tableaux}
 
 Les tableaux utilisent les extensions \texttt{booktabs} et \texttt{tabularx} pour un rendu professionnel. L'en-tête du tableau est coloré avec \texttt{tableHdr}.
@@ -244,7 +314,7 @@ Les tableaux utilisent les extensions \texttt{booktabs} et \texttt{tabularx} pou
 \end{tabularx}
 
 
-% ── SECTION 8 : ENCADRÉS D'IMAGES ─────────────────────────────
+% ── ENCADRÉS D'IMAGES ─────────────────────────────
 \section{Encadrés d'Images}
 
 La classe Myrtille propose plusieurs environnements pour intégrer des images de manière élégante et cohérente avec la charte graphique. Chaque encadré est conçu pour un usage précis : mise en valeur, comparaison texte-image, note latérale ou figure numérotée.
@@ -326,7 +396,7 @@ La commande \ci{\textbackslash myrfig} génère une figure flottante numérotée
 \end{tabularx}
 
 
-% ── SECTION 9 : PAGE DE GARDE ──────────────────────────────────
+% ── PAGE DE GARDE ──────────────────────────────────
 \section{Page de Garde}
 
 La classe Myrtille intègre un générateur automatique de page de garde. La personnalisation s'effectue de manière claire et centralisée dans le préambule de votre document (avant le \ci{\textbackslash begin\{document\}}), à l'aide de macros dédiées.

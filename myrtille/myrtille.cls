@@ -96,6 +96,24 @@
 \fancyhead[L]{\color{mid}\small\sffamily\@headerleft}
 \fancyhead[R]{\color{mid}\small\sffamily\leftmark}
 \fancyfoot[C]{\color{mid}\small\thepage}
+
+% ── Notes de bas de page (Symboliques) ───────────────────────
+\RequirePackage[bottom, hang, flushmargin]{footmisc}
+\setlength{\footnotemargin}{0.8em}
+
+% Passage aux symboles (*, †, ‡, etc.) au lieu des chiffres
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Application de la typographie Myrtille (Méthode officielle footmisc)
+\renewcommand{\footnotelayout}{\sffamily\color{mid}}
+
+% Ligne de séparation personnalisée (Sécurisée avec \kern et \hrule)
+\renewcommand{\footnoterule}{%
+  \kern 6pt
+  {\color{border}\hrule width 0.25\textwidth height 0.5pt}%
+  \kern 4pt
+}
+
 % ── Titres de sections ───────────────────────────────────────
 \RequirePackage{titlesec}
 \titleformat{\section}{}{}{0pt}{%
@@ -170,13 +188,29 @@
   frame = none,
   xleftmargin = 16pt,
   xrightmargin = 6pt,
-  % Utilisation des codes T1 pour éviter les crashs avec les caractères actifs
-  literate = {é}{{\symbol{233}}}1 {è}{{\symbol{232}}}1 {ê}{{\symbol{234}}}1 {à}{{\symbol{224}}}1 {â}{{\symbol{226}}}1 {ç}{{\symbol{231}}}1 {µ}{{\ensuremath{\mu}}}1 {ο}{{\symbol{111}}}1
+  literate =
+    {é}{{\symbol{233}}}1 
+    {è}{{\symbol{232}}}1 
+    {ê}{{\symbol{234}}}1 
+    {ë}{{\symbol{235}}}1 
+    {à}{{\symbol{224}}}1 
+    {â}{{\symbol{226}}}1 
+    {ç}{{\symbol{231}}}1 
+    {ô}{{\symbol{244}}}1 
+    {î}{{\symbol{238}}}1 
+    {ï}{{\symbol{239}}}1 
+    {û}{{\symbol{251}}}1 
+    {ù}{{\symbol{249}}}1 
+    {ü}{{\symbol{252}}}1 
+    {œ}{{\oe}}1 
+    {’}{{'}}1 % Gestion des apostrophes typographiques
+    {µ}{{\ensuremath{\mu}}}1 
+    {ο}{{\symbol{111}}}1
 }
 \lstset{style=myrtillebase}
 
 \RequirePackage{tcolorbox}
-\tcbuselibrary{breakable, skins, listings}
+\tcbuselibrary{breakable, skins, listings, theorems}
 
 % ── Macro génératrice de blocs de code (Ultra générique) ─────
 \newcommand{\newmyrtilleblock}[4][]{%
@@ -213,6 +247,46 @@
   left = 8pt, right = 8pt, top = 6pt, bottom = 6pt, before skip = 8pt, after skip = 8pt,
   fontupper = \sffamily\small\color{warnDark}, #1
 }
+
+% ── Environnements Mathématiques (Théorèmes, Définitions) ────
+
+% Boîte pour les Théorèmes / Propriétés (Bleu Myrtille)
+\newtcbtheorem[number within=section]{myrthm}{Théorème}%
+{
+  enhanced, breakable,
+  colback = accentPale,
+  colframe = accent,
+  arc = 3pt,
+  leftrule = 4pt, rightrule = 0.4pt, toprule = 0.4pt, bottomrule = 0.4pt,
+  coltitle = accentDark,
+  fonttitle = \sffamily\bfseries,
+  description font = \sffamily\color{mid},
+  separator sign = {\textbf{ -- }},
+  attach title to upper,              % <-- Fusionne le titre avec le corps
+  after title = {\par\vspace{4pt}},   % <-- Saut de ligne après le titre
+  % --- STYLE DU CORPS ---
+  left = 8pt, right = 8pt, top = 8pt, bottom = 8pt,
+  before skip = 14pt, after skip = 14pt,
+}{thm}
+
+% Boîte pour les Définitions (Vert Info)
+\newtcbtheorem[number within=section]{myrdef}{Définition}%
+{
+  enhanced, breakable,
+  colback = light,
+  colframe = accentDark,
+  arc = 3pt,
+  leftrule = 4pt, rightrule = 0.4pt, toprule = 0.4pt, bottomrule = 0.4pt,
+  coltitle = accentDark!60!black,
+  fonttitle = \sffamily\bfseries,
+  description font = \sffamily\color{mid},
+  separator sign = {\textbf{ -- }},
+  attach title to upper,              % <-- Fusionne le titre avec le corps
+  after title = {\par\vspace{4pt}},   % <-- Saut de ligne après le titre
+  % --- STYLE DU CORPS ---
+  left = 8pt, right = 8pt, top = 8pt, bottom = 8pt,
+  before skip = 14pt, after skip = 14pt,
+}{def}
 
 % ── Badge / Tag inline ────────────────────────────────────────
 \newcommand{\ci}[1]{\texttt{\small\color{inlineCode}#1}}
