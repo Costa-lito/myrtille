@@ -1,3 +1,4 @@
+% This work is distributed under the MIT License.
 % ============================================================
 %  Myrtille — Charte Graphique — Style moderne
 % ============================================================
@@ -15,6 +16,9 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
+% ── Images ───────────────────────────────────────────────────
+\RequirePackage{graphicx}
+
 % ── Police sans-serif globale (Helvetica / Courier) ──────────
 \RequirePackage[scaled=0.92]{inter}
 \RequirePackage{courier}
@@ -29,6 +33,12 @@
 \RequirePackage{setspace}
 \RequirePackage{textcomp}
 \setstretch{1.08}
+
+% ── Mathématiques ────────────────────────────────────────────
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
 
 % ── Couleurs ─────────────────────────────────────────────────
 \RequirePackage{xcolor}
@@ -90,6 +100,24 @@
 \fancyhead[L]{\color{mid}\small\sffamily\@headerleft}
 \fancyhead[R]{\color{mid}\small\sffamily\leftmark}
 \fancyfoot[C]{\color{mid}\small\thepage}
+
+% ── Notes de bas de page (Symboliques) ───────────────────────
+\RequirePackage[bottom, hang, flushmargin]{footmisc}
+\setlength{\footnotemargin}{0.8em}
+
+% Passage aux symboles (*, †, ‡, etc.) au lieu des chiffres
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Application de la typographie Myrtille (Méthode officielle footmisc)
+\renewcommand{\footnotelayout}{\sffamily\color{mid}}
+
+% Ligne de séparation personnalisée (Sécurisée avec \kern et \hrule)
+\renewcommand{\footnoterule}{%
+  \kern 6pt
+  {\color{border}\hrule width 0.25\textwidth height 0.5pt}%
+  \kern 4pt
+}
+
 % ── Titres de sections ───────────────────────────────────────
 \RequirePackage{titlesec}
 \titleformat{\section}{}{}{0pt}{%
@@ -164,13 +192,29 @@
   frame = none,
   xleftmargin = 16pt,
   xrightmargin = 6pt,
-  % Utilisation des codes T1 pour éviter les crashs avec les caractères actifs
-  literate = {é}{{\symbol{233}}}1 {è}{{\symbol{232}}}1 {ê}{{\symbol{234}}}1 {à}{{\symbol{224}}}1 {â}{{\symbol{226}}}1 {ç}{{\symbol{231}}}1 {µ}{{\ensuremath{\mu}}}1 {ο}{{\symbol{111}}}1
+  literate =
+    {é}{{\symbol{233}}}1 
+    {è}{{\symbol{232}}}1 
+    {ê}{{\symbol{234}}}1 
+    {ë}{{\symbol{235}}}1 
+    {à}{{\symbol{224}}}1 
+    {â}{{\symbol{226}}}1 
+    {ç}{{\symbol{231}}}1 
+    {ô}{{\symbol{244}}}1 
+    {î}{{\symbol{238}}}1 
+    {ï}{{\symbol{239}}}1 
+    {û}{{\symbol{251}}}1 
+    {ù}{{\symbol{249}}}1 
+    {ü}{{\symbol{252}}}1 
+    {œ}{{\oe}}1 
+    {’}{{'}}1 % Gestion des apostrophes typographiques
+    {µ}{{\ensuremath{\mu}}}1 
+    {ο}{{\symbol{111}}}1
 }
 \lstset{style=myrtillebase}
 
 \RequirePackage{tcolorbox}
-\tcbuselibrary{breakable, skins, listings}
+\tcbuselibrary{breakable, skins, listings, theorems}
 
 % ── Macro génératrice de blocs de code (Ultra générique) ─────
 \newcommand{\newmyrtilleblock}[4][]{%
@@ -208,6 +252,46 @@
   fontupper = \sffamily\small\color{warnDark}, #1
 }
 
+% ── Environnements Mathématiques (Théorèmes, Définitions) ────
+
+% Boîte pour les Théorèmes / Propriétés (Bleu Myrtille)
+\newtcbtheorem[number within=section]{myrthm}{Théorème}%
+{
+  enhanced, breakable,
+  colback = accentPale,
+  colframe = accent,
+  arc = 3pt,
+  leftrule = 4pt, rightrule = 0.4pt, toprule = 0.4pt, bottomrule = 0.4pt,
+  coltitle = accentDark,
+  fonttitle = \sffamily\bfseries,
+  description font = \sffamily\color{mid},
+  separator sign = {\textbf{ -- }},
+  attach title to upper,              % <-- Fusionne le titre avec le corps
+  after title = {\par\vspace{4pt}},   % <-- Saut de ligne après le titre
+  % --- STYLE DU CORPS ---
+  left = 8pt, right = 8pt, top = 8pt, bottom = 8pt,
+  before skip = 14pt, after skip = 14pt,
+}{thm}
+
+% Boîte pour les Définitions (Vert Info)
+\newtcbtheorem[number within=section]{myrdef}{Définition}%
+{
+  enhanced, breakable,
+  colback = light,
+  colframe = accentDark,
+  arc = 3pt,
+  leftrule = 4pt, rightrule = 0.4pt, toprule = 0.4pt, bottomrule = 0.4pt,
+  coltitle = accentDark!60!black,
+  fonttitle = \sffamily\bfseries,
+  description font = \sffamily\color{mid},
+  separator sign = {\textbf{ -- }},
+  attach title to upper,              % <-- Fusionne le titre avec le corps
+  after title = {\par\vspace{4pt}},   % <-- Saut de ligne après le titre
+  % --- STYLE DU CORPS ---
+  left = 8pt, right = 8pt, top = 8pt, bottom = 8pt,
+  before skip = 14pt, after skip = 14pt,
+}{def}
+
 % ── Badge / Tag inline ────────────────────────────────────────
 \newcommand{\ci}[1]{\texttt{\small\color{inlineCode}#1}}
 \newcommand{\badge}[2][accent]{%
@@ -231,6 +315,165 @@
 \newcommand{\sidenote}[1]{%
   \begin{tcolorbox}[colback=sidebarBg, colframe=border, arc=3pt, left=8pt, right=8pt, top=5pt, bottom=5pt,
     before skip=6pt, after skip=6pt, fontupper=\sffamily\footnotesize\color{mid}]#1\end{tcolorbox}%
+}
+
+% ── Encadrés d'images ────────────────────────────────────────
+
+% --- imgbox : carte image moderne ---
+% Usage : \begin{imgbox}[Légende]{chemin/image}
+%   Texte optionnel sous l'image
+% \end{imgbox}
+% ── Initialisation des variables pour la mesure de l'image ──
+\newsavebox{\myrtilleimgbox}
+\newlength{\myrtilleimgwidth}
+% ── Environnement imgbox ─────────────────────────────────────
+
+\newenvironment{imgbox}[3][]{%
+  \vspace{10pt}\noindent\centering
+  
+  % 1. Mesure et ajustement de l'image (identique)
+  \sbox{\myrtilleimgbox}{%
+    \def\tempwidth{#2}%
+    \ifx\tempwidth\empty
+      \includegraphics{#3}%
+    \else
+      \includegraphics[width=#2]{#3}%
+    \fi
+  }%
+  \setlength{\myrtilleimgwidth}{\wd\myrtilleimgbox}%
+  
+  % 2. Sécurité (identique)
+  \ifdim\dimexpr\myrtilleimgwidth+3pt\relax>\linewidth
+    \setlength{\myrtilleimgwidth}{\dimexpr\linewidth-3pt\relax}%
+    \sbox{\myrtilleimgbox}{\includegraphics[width=\myrtilleimgwidth]{#3}}%
+  \fi
+  
+  % 3. Boîte externe : AJOUT DE LA BORDURE FINE TOUT AUTOUR
+  \begin{tcolorbox}[
+    enhanced, colback=white, colframe=accent,
+    boxrule=0.4pt, % <-- NOUVEAU : Fin contour bleu sur tout le pourtour
+    leftrule=3pt,  % <-- CONSERVÉ : Liseré épais à gauche
+    arc=6pt,
+    shadow={0pt}{-2pt}{6pt}{black!8},
+    left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
+    width=\dimexpr\myrtilleimgwidth+3pt\relax,
+    center,
+    clip upper % Coupe le coin haut-gauche de l'image pour épouser la bordure arrondie
+  ]
+    \usebox{\myrtilleimgbox}%
+    \par\noindent
+    
+    % 4. Boîte interne (légende) : (identique)
+    \begin{tcolorbox}[
+      enhanced, colback=accentPale, 
+      frame hidden, boxrule=0pt, 
+      arc=4pt, sharp corners=north, % S'imbrique parfaitement dans l'arrondi du bas
+      left=8pt, right=8pt, top=6pt, bottom=6pt,
+      before skip=0pt, after skip=0pt,
+      fontupper=\sffamily\small\color{dark},
+      width=\myrtilleimgwidth
+    ]
+      \def\tempcaption{#1}%
+      \ifx\tempcaption\empty\else
+        {\bfseries\color{accentDark}#1}\par\vspace{2pt}%
+      \fi
+}{%
+    \end{tcolorbox}
+  \end{tcolorbox}
+  \vspace{10pt}
+}
+% --- imgfloat : image + texte côte à côte ---
+% Usage : \begin{imgfloat}{chemin/image}
+%   Texte descriptif à droite de l'image
+% \end{imgfloat}
+\newtcolorbox{imgfloat@inner}[1][]{
+  breakable, colback = accentPale, colframe = accentDark, arc = 4pt,
+  leftrule = 3pt, rightrule = 0.4pt, toprule = 0.4pt, bottomrule = 0.4pt,
+  left = 0pt, right = 8pt, top = 8pt, bottom = 8pt,
+  before skip = 10pt, after skip = 10pt,
+  sidebyside, sidebyside align = top,
+  lefthand width = 0.38\linewidth,
+  fontupper = \sffamily\small\color{dark},
+  fontlower = \sffamily\small\color{dark},
+  #1
+}
+\newenvironment{imgfloat}[1]{
+  \begin{imgfloat@inner}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{#1}
+    \tcblower
+}{%
+  \end{imgfloat@inner}
+}
+
+% --- imgsidenote : miniature dans une note latérale ---
+% Usage : \imgsidenote{chemin/image}{Texte de la note}
+\newcommand{\imgsidenote}[2]{%
+  \begin{tcolorbox}[colback=sidebarBg, colframe=border, arc=3pt,
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    before skip=6pt, after skip=6pt,
+    sidebyside, sidebyside align=center,
+    lefthand width=0.22\linewidth,
+    fontupper=\sffamily\footnotesize\color{mid},
+    fontlower=\sffamily\footnotesize\color{mid}]
+    \includegraphics[width=\linewidth, keepaspectratio]{#1}
+    \tcblower
+    #2
+  \end{tcolorbox}%
+}
+
+% --- \myrfig : figure numérotée rapide Myrtille (Nouvelle version) ---
+% Usage : \myrfig[width=0.6\linewidth]{chemin/image}{Légende}
+\newcommand{\myrfig}[3][width=0.7\linewidth]{%
+  \begin{figure}[htbp]
+    \centering
+    % 1. Mesure de l'image (réutilise les variables de imgbox)
+    \sbox{\myrtilleimgbox}{%
+      \includegraphics[#1]{#2}%
+    }%
+    \setlength{\myrtilleimgwidth}{\wd\myrtilleimgbox}%
+    
+    % 2. Sécurité : Ajustement si l'image est plus large que la page
+    \ifdim\dimexpr\myrtilleimgwidth+3.4pt\relax>\linewidth
+      \setlength{\myrtilleimgwidth}{\dimexpr\linewidth-3.4pt\relax}%
+      \sbox{\myrtilleimgbox}{\includegraphics[width=\myrtilleimgwidth]{#2}}%
+    \fi
+    
+    % 3. Conteneur principal unifié
+    \begin{tcolorbox}[
+      enhanced,
+      width=\dimexpr\myrtilleimgwidth+3.4pt\relax, % Image + bordures (3pt gauche, 0.4pt droite)
+      center,
+      colback=white,
+      colframe=accentDark,
+      boxrule=0.4pt,
+      leftrule=3pt,
+      arc=4pt,
+      shadow={0pt}{-2pt}{6pt}{black!8},
+      left=0pt, right=0pt, top=0pt, bottom=0pt, boxsep=0pt,
+      clip upper % Coupe les coins de l'image pour épouser la bordure
+    ]
+      \usebox{\myrtilleimgbox}%
+      \par\nointerlineskip\noindent % Supprime l'espace parasite sous l'image
+      
+      % 4. Bande de légende imbriquée 
+      \begin{tcolorbox}[
+        enhanced,
+        colback=light,
+        frame hidden,
+        boxrule=0pt,
+        arc=4pt,
+        sharp corners=north, % S'emboîte parfaitement sous l'image
+        left=8pt, right=8pt, top=5pt, bottom=5pt,
+        before skip=0pt, after skip=0pt,
+        width=\myrtilleimgwidth,
+        fontupper=\sffamily\footnotesize\raggedright
+      ]
+        \refstepcounter{figure}% Incrémentation native pour compatibilité avec \label
+        \textbf{\color{accentDark}Figure~\thefigure}\enspace{\color{dark}#3}
+      \end{tcolorbox}
+    \end{tcolorbox}
+  \end{figure}
 }
 
 % ── Variables de la page de garde ────────────────────────────
