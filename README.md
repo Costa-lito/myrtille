@@ -140,4 +140,4 @@ Les fichiers `.cls` et `.tex` sont distribués sous licence **MIT** (voir l'en-t
 | `acerola.jpg` | Marcelo P. B. Silva ([Source](https://commons.wikimedia.org/wiki/File:Acerola_Malpighia_glabra.jpg)) | [CC0 — Domaine Public](https://creativecommons.org/publicdomain/zero/1.0/deed.fr) |
 | `birch.jpg` *(thème Betula)* | joeldinda, « Birches » ([Source](https://www.flickr.com/photos/96739609@N00/9516542874)) | [CC-BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/) |
 
-> Pour toute réutilisation, veillez à maintenir les crédits aux auteurs originaux conformément aux termes des licences mentionnées. `birch.jpg` étant sous licence *NonCommercial*, l'exemple compilé `betula.pdf` est distribué sous [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr) plutôt que CC-BY-SA 4.0.
+> Pour toute réutilisation, veillez à maintenir les crédits aux auteurs originaux conformément aux termes des licences mentionnées.
