@@ -1,0 +1,231 @@
+% This work is distributed under the MIT License.
+% ============================================================
+%  Démo de myrtillebook.cls — Thème Pringlea
+%  Illustre : \chapter sur page impaire, en-têtes alternés,
+%  numéro de page alterné, \frontmatter/\mainmatter/\backmatter,
+%  et les mêmes composants que la variante article (badges,
+%  boîtes, blocs de code, environnements maths, images).
+% ============================================================
+\documentclass[theme=pringlea]{myrtillebook}
+\usepackage{ccicons}
+
+\doctype{Classe pour LaTeX}
+\title{Myrtille Book}
+\subtitle{Variante longue-forme \& guide d'utilisation}
+\version{v1.0}
+
+\coverfeatures{
+  \begin{tabular}{@{}ll@{}}
+    \color{coverMuted}\sffamily\small Structure & \color{accent}\sffamily\small \textbullet\ Chapitres, front/main/backmatter \\[3pt]
+    \color{coverMuted}\sffamily\small Mise en page & \color{accent}\sffamily\small \textbullet\ Recto/verso, en-têtes alternés \\[3pt]
+    \color{coverMuted}\sffamily\small Composants & \color{accent}\sffamily\small \textbullet\ Identiques à myrtille.cls \\
+  \end{tabular}
+}
+
+\coverfooter{Guide de référence pour la rédaction de documents longs}
+
+\hypersetup{pdftitle={Myrtille Book — Charte Graphique}}
+\headerleft{Myrtille Book}
+
+\begin{document}
+\makecover
+
+% ============================================================
+\frontmatter
+% ============================================================
+
+\chapter*{Préface}
+Ce document sert de démonstration à \ci{myrtillebook.cls}, la variante de la classe Myrtille dérivée de \ci{book} plutôt que de \ci{article}. Il reprend les mêmes composants que la charte graphique habituelle (badges, boîtes d'information, blocs de code, environnements mathématiques, encadrés d'images), mais dans une mise en page pensée pour les documents longs : chapitres, pagination recto/verso, en-têtes alternés.
+
+Cette préface, comme la table des matières qui suit, fait partie du \ci{\textbackslash frontmatter} : elle est numérotée en chiffres romains et ses chapitres ne sont pas numérotés.
+
+% \contentsname est vide par défaut (comme dans myrtille.cls, pour laisser
+% le titre personnalisable) ; on le renseigne pour que \tableofcontents
+% affiche un vrai titre de chapitre. Elle démarre désormais correctement
+% sur sa propre page, comme n'importe quel autre \chapter*.
+\renewcommand{\contentsname}{Table des matières}
+\tableofcontents
+
+% ============================================================
+\mainmatter
+% ============================================================
+
+\chapter{Mise en page recto/verso}
+
+À partir d'ici, le \ci{\textbackslash mainmatter} a remis la pagination en chiffres arabes à 1, et chaque \ci{\textbackslash chapter} démarre sur une page impaire (recto) — une page blanche est insérée automatiquement si nécessaire.
+
+\section{En-têtes alternés}
+Contrairement à \ci{myrtille.cls} (en-tête identique sur toutes les pages), \ci{myrtillebook.cls} alterne le contenu du coin extérieur de la page :
+\begin{itemize}
+  \item sur une page \textbf{paire} (verso), le numéro de page et le nom du chapitre apparaissent à \textbf{gauche} ;
+  \item sur une page \textbf{impaire} (recto), le nom de la section et le numéro de page apparaissent à \textbf{droite}.
+\end{itemize}
+Le coin intérieur (côté reliure) affiche en permanence le texte fixe défini par \ci{\textbackslash headerleft}, des deux côtés.
+
+\begin{infobox}
+Les pages d'ouverture de chapitre (comme celle-ci) utilisent le style \ci{plain} : pas de repère courant ni de filet, seul le numéro de page reste, centré en pied de page. C'est le comportement standard d'un \ci{book} LaTeX, hérité automatiquement.
+\end{infobox}
+
+\section{Badges et blocs de code}
+Les badges \badgeReq, \badgeOpt\ et le code en ligne \ci{theme=pringlea} fonctionnent à l'identique. Il en va de même pour les blocs de code :
+
+\begin{pyblock}
+def alterne_marge(numero_page):
+    """Retourne 'interieure' ou 'exterieure' selon la parité."""
+    return "paire (verso)" if numero_page % 2 == 0 else "impaire (recto)"
+\end{pyblock}
+
+\begin{warnbox}
+Comme pour \ci{myrtille.cls}, les marges sont désormais en miroir (\ci{inner}/\ci{outer}) plutôt que gauche/droite fixes : la marge intérieure, plus généreuse, réserve la place pour la reliure.
+\end{warnbox}
+
+\section{Remplissage}
+Le paragraphe suivant est répété volontairement pour que ce chapitre s'étende sur plusieurs pages et laisse voir l'alternance des en-têtes sur au moins une page paire et une page impaire consécutives.
+
+\sidenote{Ceci est une note latérale (\ci{\textbackslash sidenote}), identique à celle de \ci{myrtille.cls}.}
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+\section{Second remplissage}
+Cette dernière section pousse le chapitre sur une troisième page (une page impaire, cette fois), afin de vérifier que le coin extérieur bascule bien à droite — section courante + numéro de page — sur une page de corps de texte impaire, et non uniquement sur les pages paires déjà vues plus haut.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+Le bouleau, la pringlea, l'acérola : chacun des thèmes de Myrtille tire son nom d'une plante différente, choisie pour l'ambiance chromatique qu'elle évoque plutôt que pour un lien botanique littéral entre les quatre déclinaisons. Cette page de remplissage permet simplement de vérifier que la pagination continue de s'alterner correctement sur plusieurs pages consécutives, y compris lorsqu'un chapitre s'étend largement au-delà de sa page d'ouverture.
+
+\chapter{Encadrés d'images}
+
+Les quatre environnements d'images (\ci{imgbox}, \ci{imgfloat}, \ci{imgsidenote}, \ci{\textbackslash myrfig}) sont identiques à ceux de \ci{myrtille.cls}.
+
+\section{Carte image (imgbox)}
+\begin{imgbox}[La pringlea (\textit{Pringlea antiscorbutica})]{0.7\linewidth}{pictures/pringlea.jpg}
+    Plante endémique des îles subantarctiques, aux larges feuilles charnues d'un vert profond.
+\end{imgbox}
+
+\section{Image et texte côte à côte (imgfloat)}
+\begin{imgfloat}{pictures/pringlea.jpg}
+  \textbf{Pringlea antiscorbutica}
+
+  La pringlea (ou chou de Kerguelen) est une plante endémique robuste aux larges feuilles charnues, d'un vert profond. Elle pousse naturellement dans les environnements froids et isolés des îles subantarctiques.
+\end{imgfloat}
+
+\section{Figure numérotée (\textbackslash myrfig)}
+Dans un livre, les figures sont numérotées « chapitre.figure » : book.cls réinitialise automatiquement le compteur à chaque \ci{\textbackslash chapter}.
+
+\myrfig[width=0.5\linewidth]{pictures/pringlea.jpg}{La pringlea (\textit{Pringlea antiscorbutica}), photographiée dans son milieu naturel.}
+
+\chapter{Environnements mathématiques}
+
+Comme les figures, \ci{myrthm} et \ci{myrdef} sont numérotés par chapitre plutôt que par section — c'est la convention habituelle d'un livre.
+
+\begin{myrthm}{Théorème de Pythagore}{pythagore}
+Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés.
+\[ a^2 + b^2 = c^2 \]
+\end{myrthm}
+
+\begin{myrdef}{Espace Vectoriel}{espace_vect}
+Un espace vectoriel sur un corps $K$ est un ensemble muni d'une loi de composition interne (l'addition) et d'une loi de composition externe (la multiplication par un scalaire).
+\end{myrdef}
+
+Pour citer le théorème précédent : \ref{thm:pythagore} (chapitre~\thechapter). Pour citer la définition précédente : \ref{def:espace_vect}.
+
+\chapter{Exemple de texte long (Lorem Ipsum)}
+
+Ce chapitre ne sert qu'à générer plusieurs dizaines de pages de texte continu, afin d'observer l'alternance des en-têtes, la position du numéro de page et les marges miroir sur une session de lecture longue plutôt que sur deux ou trois pages isolées.
+
+\section{Première partie}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam.
+
+Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi.
+
+Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst. Sed dictum. Duis pellentesque nibh. Phasellus turpis elit, vulputate eu, scelerisque vel, sagittis id, metus. Sed pede pede, auctor eu, vestibulum quis, gravida vel, nulla. In hac habitasse platea dictumst. Nam elementum lacinia lorem. Praesent tempor, elit sit amet aliquam auctor, nisi elit lacinia leo, sed convallis lectus purus vel lorem.
+
+\subsection{Un premier sous-thème}
+
+Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula.
+
+\begin{infobox}
+Un petit rappel au passage : les boîtes d'information (\ci{infobox}), tout comme les blocs de code et les badges, restent parfaitement fonctionnels au milieu d'un long chapitre — rien de spécifique au fait d'être en mode \ci{book} ne change leur comportement.
+\end{infobox}
+
+Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.
+
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus.
+
+\subsection{Un second sous-thème}
+
+Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.
+
+Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+
+\sidenote{Une autre note latérale, glissée ici pour vérifier qu'elle ne perturbe pas l'enchaînement du texte sur une longue série de pages.}
+
+Quisque metus enim, venenatis fermentum, mollis in, porta et, nibh. Duis vulputate elit in elit. Mauris dictum facilisis augue. Morbi mattis ullamcorper velit. Phasellus gravida semper nisi. Nullam vel sem. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Sed hendrerit. Morbi ac felis. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede.
+
+\section{Deuxième partie}
+
+Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc nulla. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Donec venenatis vulputate lorem. Morbi nec metus. Phasellus blandit leo ut odio. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem.
+
+Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. In auctor lobortis lacus. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Vestibulum ullamcorper mauris at ligula. Fusce fermentum. Nullam cursus lacinia erat. Praesent blandit laoreet nibh. Fusce convallis metus id felis luctus adipiscing.
+
+\begin{pyblock}
+def lorem_ipsum(n_paragraphes):
+    """Un simple compteur pour illustrer qu'un bloc de code reste
+    lisible même noyé au milieu d'un long chapitre de remplissage."""
+    return [f"Paragraphe {i}" for i in range(1, n_paragraphes + 1)]
+\end{pyblock}
+
+Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque id mi. Ut tincidunt tincidunt erat. Etiam feugiat lorem non metus. Vestibulum dapibus nunc ac augue. Curabitur vestibulum aliquam leo. Praesent egestas neque eu enim. In hac habitasse platea dictumst. Fusce a quam.
+
+Etiam ut purus mattis mauris sodales aliquam. Curabitur nisi. Quisque malesuada placerat nisl. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor.
+
+\subsection{Vers la fin du chapitre}
+
+Mauris sollicitudin fermentum libero. Praesent nonummy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. Suspendisse eu nisl. Nullam ut nisl. In hac habitasse platea dictumst.
+
+Etiam bibendum elit eget erat. Nam duis tellus in ligula rutrum vestibulum. Sed lorem. Aliquam erat volutpat. Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus. Donec pretium posuere tellus. Sed elementum quam ac neque congue viverra. Proin dictum elementum velit.
+
+Sed vitae eros. Nunc porttitor pulvinar tellus. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante iaculis nunc, vitae aliquam massa nisl quis neque. Donec ac augue non elit dapibus rhoncus. Aenean gravida nunc sed pede. Donec ultricies enim eu neque. Curabitur eu nisl at magna ultrices lacinia.
+
+Duis condimentum augue id magna semper rutrum. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Proin pede metus, vulputate nec, fermentum fringilla, vehicula vitae, justo. Integer ultricies imperdiet dolor. Nulla eget nisl. Vestibulum vel eros. Aenean vitae massa. Vestibulum sagittis sapien.
+
+Ce dernier paragraphe clôt le chapitre de remplissage : le chapitre suivant (les licences, en \ci{\textbackslash backmatter}) reprend son propre cycle recto/verso, en repartant à nouveau sur une page impaire.
+
+% ============================================================
+\backmatter
+% ============================================================
+
+\chapter*{Licences et Crédits}
+\begin{description}
+    \item[Auteur :] Ce projet et ce document ont été créés par \textbf{Costa Zaffani-Le Carpentier}.
+    \item[Code source :] Code source \ci{.tex} et classes \ci{.cls} sous licence \textbf{MIT}.
+    \item[Image \textit{pringlea.jpg} :] Par \textbf{Bruno Navez} (\href{https://commons.wikimedia.org/wiki/File:Pringlea_antiscorbutica.JPG}{Source}) sous licence \href{https://creativecommons.org/licenses/by-sa/3.0/deed.fr}{CC-BY-SA 3.0}.
+    \item[Document PDF :] Ce document est mis à disposition sous licence \href{https://creativecommons.org/licenses/by-sa/4.0/deed.fr}{CC-BY-SA 4.0}.
+\end{description}
+
+\end{document}

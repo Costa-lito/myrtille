@@ -15,6 +15,7 @@
 - **Environnements mathématiques** — Boîtes numérotées pour théorèmes (`myrthm`) et définitions (`myrdef`), avec références croisées natives
 - **Typographie soignée** — Police sans-serif Inter, espacement de paragraphes optimisé, notes de bas de page symboliques
 - **Classe CV dédiée (`myrtillecv.cls`)** — Variante dérivée de `myrtille.cls`, pensée pour un CV sobre en une colonne (esprit académique / recherche), avec ses propres macros (`\cvname`, `\cvheadline`, `\cvlocation`, `\makecvheader`...) et compatible avec les mêmes thèmes de couleur
+- **Classe longue-forme dédiée (`myrtillebook.cls`)** — Variante dérivée de `book` (recto/verso) plutôt que d'`article` : chapitres démarrant sur page impaire, marges miroir, en-têtes et numéro de page alternés selon la parité, `\frontmatter`/`\mainmatter`/`\backmatter`, et les mêmes composants (badges, boîtes, blocs de code, environnements mathématiques, encadrés d'images) que `myrtille.cls`
 
 ---
 
@@ -33,7 +34,7 @@ Contrairement à une architecture à une classe par thème, **`myrtille.cls` est
 | **Acerola** | `acerola` (alias `red`) | Rouge cerise `#E11D48` | Dynamique, moderne, expressif |
 | **Betula** | `betula` (alias `bw`, `noir`, `print`, `grayscale`) | Niveaux de gris `#2B2B2B` | Impression noir et blanc |
 
-`myrtillecv.cls` accepte la même option `theme=` pour les CV.
+`myrtillecv.cls` accepte la même option `theme=` pour les CV. `myrtillebook.cls` l'accepte aussi pour les documents longs (livres, manuels) — les 4 thèmes y sont supportés, contrairement à `myrtillecv.cls` qui n'en propose que 3 (pas de Betula).
 
 ---
 
@@ -49,6 +50,7 @@ Le dossier `Exemples/source/` contient un document de démonstration par thème,
 | `betula.tex` | Thème Betula (niveaux de gris, impression N&B) |
 | `cours_pringlea.tex` | Polycopié de cours rédigé avec `myrtille.cls` (thème Pringlea) |
 | `cv_pringlea.tex` | CV rédigé avec `myrtillecv.cls` (thème Pringlea) |
+| `livre_pringlea.tex` | Livre rédigé avec `myrtillebook.cls` (thème Pringlea) — chapitres, frontmatter/mainmatter/backmatter, en-têtes alternés |
 
 ---
 
@@ -78,6 +80,7 @@ latexmk -r .latexmkrc -synctex=1 -interaction=nonstopmode -file-line-error -pdf 
 myrtille_V2/
 ├── myrtille.cls           ← Classe principale (documents), thèmes via theme=...
 ├── myrtillecv.cls          ← Classe dérivée pour CV, mêmes thèmes
+├── myrtillebook.cls         ← Classe dérivée pour livres (book, recto/verso), mêmes thèmes
 ├── .latexmkrc               ← Config latexmk (aux_dir / out_dir / TEXINPUTS)
 ├── .vscode/
 │   └── settings.json        ← Config LaTeX Workshop (recette latexmk -r .latexmkrc)
@@ -90,6 +93,7 @@ myrtille_V2/
         ├── myrtille.tex
         ├── cours_pringlea.tex
         ├── cv_pringlea.tex
+        ├── livre_pringlea.tex
         ├── pictures/         ← Images utilisées par les exemples
         └── build/            ← Fichiers auxiliaires (générés, non versionnés)
 ```
@@ -117,6 +121,8 @@ Pour ajouter un thème :
 2. Ajoutez, si besoin, un alias court dans le bloc de normalisation juste au-dessus (ex. `\ifdefstring{\myrtille@theme}{violet}{\def\myrtille@theme{montheme}}{}`).
 3. Utilisez `\documentclass[theme=montheme]{myrtille}` dans un nouveau document.
 
+> `myrtillecv.cls` et `myrtillebook.cls` ne partagent **aucun** code de palette avec `myrtille.cls` (chacune duplique la sienne indépendamment, sous le même principe de blocs conditionnels). Un nouveau thème doit donc être ajouté séparément dans chaque classe où vous voulez pouvoir l'utiliser.
+
 ---
 
 ## Design de la couverture
@@ -129,7 +135,7 @@ Le fond de la page de garde (`\makecover`) est entièrement vectoriel : dessiné
 
 ### Code source
 
-Les fichiers `.cls` et `.tex` sont distribués sous licence **MIT**.
+Les fichiers `.cls` et `.tex` sont distribués sous licence **MIT** — voir le fichier [`LICENSE`](LICENSE) à la racine.
 
 ### Assets visuels
 
