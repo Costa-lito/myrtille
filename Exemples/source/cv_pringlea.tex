@@ -1,0 +1,144 @@
+% This work is distributed under the MIT License.
+% ============================================================
+%  CV — Exemple fictif (version longue) — Classe myrtillecv
+%  Thème pringlea
+% ============================================================
+\documentclass[theme=pringlea]{myrtillecv}
+\usepackage{ccicons}
+
+\hypersetup{pdftitle={CV - Léa Moreau (exemple fictif, version longue)}, pdfauthor={Léa Moreau}}
+
+\begin{document}
+
+\cvname{Léa}{Moreau}
+\cvheadline{CV exemple pour la classe \texttt{myrtillecv.cls} \textbullet\ licence MIT}
+\cvlocation{Lyon, France}
+\cvphonenumber{+33 6 12 34 56 78}
+\cvmail{lea.moreau.exemple@gmail.com}
+\cvlinkedin{https://www.linkedin.com/in/lea-moreau-exemple/}{linkedin.com/in/lea-moreau-exemple}
+\cvwebsite{https://lea-moreau-exemple.dev}{lea-moreau-exemple.dev}
+\makecvheader
+
+\cvsection{Profil professionnel}
+\cvprofile{Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce.}
+
+\cvsection{Compétences}
+\begin{itemize}
+  \item \cvskill{Machine Learning}{Scikit-learn, PyTorch, TensorFlow, XGBoost, LightGBM, NLP, Computer Vision, séries temporelles}
+  \item \cvskill{MLOps \& Cloud}{Docker, Kubernetes, MLflow, Airflow, AWS (SageMaker, S3, EC2, Lambda), GCP (Vertex AI, BigQuery), Terraform}
+  \item \cvskill{Data Engineering}{Spark, Kafka, dbt, PostgreSQL, MongoDB, Snowflake}
+  \item \cvskill{Programmation}{Python, SQL, Scala, Bash, Git, LaTeX, C++}
+  \item \cvskill{Visualisation}{Tableau, Power BI, Plotly, Streamlit}
+  \item \cvskill{Transversales}{Gestion de projet agile (Scrum, Kanban), mentorat, communication technique, vulgarisation scientifique}
+\end{itemize}
+
+\cvsection{Langues}
+\begin{itemize}
+  \item \cvskill{Français}{Langue maternelle}
+  \item \cvskill{Anglais}{C1 --- courant, usage professionnel quotidien, certification TOEIC 945/990}
+  \item \cvskill{Allemand}{B1 --- notions scolaires et professionnelles}
+  \item \cvskill{Italien}{A2 --- bases conversationnelles}
+\end{itemize}
+
+\cvsection{Parcours académique}
+
+\begin{cventry}{2018 -- 2021}{Diplôme d'ingénieur --- spécialité Data \& IA}{INSA Lyon}{Lyon}
+  \textit{Diplômée avec mention bien}
+  \begin{itemize}
+    \item Spécialisation en apprentissage automatique et traitement du signal. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    \item Projet de fin d'études : détection d'anomalies sur séries temporelles industrielles, en partenariat avec un groupe énergétique.
+    \item Enseignement optionnel : optimisation convexe, calcul distribué, éthique de l'intelligence artificielle.
+  \end{itemize}
+\end{cventry}
+
+\begin{cventry}{2016 -- 2018}{Classe Préparatoire aux Grandes Écoles -- MPSI/MP}{Lycée du Parc}{Lyon}
+  \begin{itemize}
+    \item Mathématiques, Physique et Sciences de l'Ingénieur. Ut enim ad minim veniam, quis nostrud exercitation.
+    \item Admissible aux concours Centrale-Supélec et Mines-Ponts.
+  \end{itemize}
+\end{cventry}
+
+\begin{cventry}{2015 -- 2016}{Semestre d'échange académique}{University of Melbourne}{Melbourne, Australie}
+  \begin{itemize}
+    \item Cours de mathématiques appliquées et d'introduction à la programmation scientifique.
+  \end{itemize}
+\end{cventry}
+
+\cvsection{Expériences}
+
+\begin{cventry}{2023 -- Aujourd'hui}{Data Scientist Senior}{Vivatech Solutions}{Lyon}
+  \begin{itemize}
+    \item Conception et déploiement d'un pipeline de scoring crédit servant plus de 200~000 prédictions par jour. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+    \item Mise en place d'une infrastructure MLOps réduisant le temps de mise en production de 4 semaines à 3 jours.
+    \item Encadrement de deux alternants et animation d'ateliers internes sur les bonnes pratiques ML. Excepteur sint occaecat cupidatat non proident.
+    \item Mise en place d'un cadre de monitoring de dérive des modèles en production (data drift \& concept drift).
+    \item Contribution à la définition de la stratégie IA responsable de l'entreprise (biais, explicabilité, gouvernance des données).
+  \end{itemize}
+\end{cventry}
+
+\begin{cventry}{2021 -- 2023}{Data Scientist}{NordLog Retail}{Villeurbanne}
+  \begin{itemize}
+    \item Développement de modèles de prévision de la demande pour l'optimisation des stocks (réduction de 12\,\% des ruptures). Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
+    \item Automatisation du reporting via des pipelines Airflow et tableaux de bord interactifs Power BI.
+    \item Déploiement d'un moteur de recommandation produit basé sur du filtrage collaboratif, augmentant le taux de clic de 9\,\%.
+    \item Participation au recrutement et à l'intégration de deux data analysts juniors.
+  \end{itemize}
+\end{cventry}
+
+\begin{cventry}{Avril -- Sept. 2020}{Stage --- Vision par ordinateur}{OptiVision Labs}{Grenoble}
+  \begin{itemize}
+    \item Développement d'un modèle de détection de défauts sur ligne de production par apprentissage profond.
+    \item Amélioration du taux de détection de 8 points par rapport à la solution existante. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
+    \item Rédaction de la documentation technique et présentation des résultats au comité de direction.
+  \end{itemize}
+\end{cventry}
+
+\begin{cventry}{Juin -- Août 2019}{Stage --- Analyse de données}{GreenWatt Énergie}{Lyon}
+  \begin{itemize}
+    \item Analyse exploratoire de données de consommation électrique à l'échelle régionale.
+    \item Mise en place de tableaux de bord de suivi pour les équipes commerciales.
+  \end{itemize}
+\end{cventry}
+
+\cvsection{Projets personnels}
+
+\begin{cventry}{2024 -- Aujourd'hui}{OpenBirds --- Classification d'espèces d'oiseaux par image}{Projet open source}{}
+  \begin{itemize}
+    \item Modèle de classification fine-grained entraîné sur plus de 50~000 images, déployé via une application Streamlit.
+    \item Plus de 300 étoiles sur GitHub, contributions de la communauté.
+  \end{itemize}
+\end{cventry}
+
+\begin{cventry}{2022}{Blog technique lea-moreau-exemple.dev}{Projet personnel}{}
+  \begin{itemize}
+    \item Rédaction régulière d'articles de vulgarisation sur le MLOps et l'ingénierie des données. Lorem ipsum dolor sit amet.
+  \end{itemize}
+\end{cventry}
+
+\cvsection{Publications \& Communications}
+
+\cvpub{Moreau, L., Dubois, T., Nguyen, K.}{2024}{Robust drift detection for streaming credit-scoring models}{Actes de la conférence francophone sur l'apprentissage automatique (CAp)}
+
+\cvpub{Moreau, L., Berthier, S.}{2023}{Lightweight anomaly detection for industrial time series at the edge}{IEEE International Conference on Data Engineering (ICDE), poster}
+
+\cvpub{Moreau, L.}{2022}{MLOps en pratique : retour d'expérience sur le passage à l'échelle}{Conférence interne Vivatech Solutions Tech Talks}
+
+\cvpub{Moreau, L., Petit, A.}{2021}{Anomaly detection in industrial time series using lightweight autoencoders}{Mémoire de fin d'études, INSA Lyon}
+
+\cvsection{Distinctions}
+\begin{itemize}
+  \item \cvskill{Prix du meilleur poster}{ICDE 2023, catégorie jeunes chercheurs.}
+  \item \cvskill{Bourse d'excellence}{INSA Lyon, promotion 2021.}
+  \item \cvskill{Hackathon Data for Good}{1\textsuperscript{ère} place, édition 2022, équipe de 4 personnes.}
+\end{itemize}
+
+\cvsection{Centres d'intérêt}
+\begin{itemize}
+  \item \cvskill{Bénévolat \textbar\ Data for Good}{participation à des projets à impact social utilisant la data science.}
+  \item \cvskill{Escalade}{pratique en salle et en falaise, plusieurs voyages d'escalade en Europe.}
+  \item \cvskill{Course à pied}{deux marathons complétés, entraînement régulier.}
+  \item \cvskill{Lecture}{littérature de science-fiction et essais de vulgarisation scientifique.}
+\end{itemize}
+\vspace{30pt}
+{\Large \ccbysa} 
+\end{document}

@@ -1,0 +1,423 @@
+% This work is distributed under the MIT License.
+\documentclass[theme=pringlea]{myrtille}
+\usepackage{ccicons}
+
+% ============================================================
+%  Configuration du titre
+% ============================================================
+\doctype{Polycopié de cours}
+\title{Introduction à l'algèbre linéaire}
+\subtitle{Espaces vectoriels, applications linéaires, matrices et déterminants}
+\version{2026-2027}
+
+\coverfooter{Notes de cours \textbullet\ document exemple pour la classe myrtille.cls \textbullet\ licence MIT}
+
+\hypersetup{pdftitle={Introduction à l'algèbre linéaire}}
+\headerleft{Algèbre linéaire \textbf{·} Introduction}
+
+\begin{document}
+% ============================================================
+% Titre compact : un bandeau en haut de la première page.
+\makecoversimple
+
+%{\sffamily\Large\bfseries\color{dark} Table des matières}\par
+%\vspace{-15pt}\hrulefull\tableofcontents
+
+% ============================================================
+\section{Vecteurs et espaces vectoriels}
+% ============================================================
+
+\subsection{Motivation}
+L'algèbre linéaire étudie les objets que l'on peut \textbf{additionner} et \textbf{multiplier par un nombre} (un scalaire) tout en respectant certaines règles naturelles : vecteurs du plan ou de l'espace, $n$-uplets de nombres réels, polynômes, fonctions, matrices... Ce cadre commun s'appelle un \textbf{espace vectoriel}.
+
+\begin{infobox}
+Dans tout ce document, $K$ désigne un corps (dans la quasi-totalité des exemples, $K = \mathbb{R}$ ou $K = \mathbb{C}$). Les éléments de $K$ sont appelés \textbf{scalaires}.
+\end{infobox}
+
+\subsection{Définition d'un espace vectoriel}
+\begin{myrdef}{Espace vectoriel}{ev}
+Un ensemble $E$ muni d'une addition interne $+ : E \times E \to E$ et d'une multiplication externe $\cdot : K \times E \to E$ est un \textbf{espace vectoriel} sur $K$ si, pour tous $u, v, w \in E$ et $\lambda, \mu \in K$ :
+\begin{enumerate}
+    \item $(E, +)$ est un groupe commutatif (associativité, élément neutre $0_E$, opposé, commutativité) ;
+    \item $\lambda \cdot (u + v) = \lambda \cdot u + \lambda \cdot v$ ;
+    \item $(\lambda + \mu) \cdot u = \lambda \cdot u + \mu \cdot u$ ;
+    \item $\lambda \cdot (\mu \cdot u) = (\lambda \mu) \cdot u$ ;
+    \item $1 \cdot u = u$.
+\end{enumerate}
+Les éléments de $E$ sont appelés \textbf{vecteurs}.
+\end{myrdef}
+
+\subsection{Exemples fondamentaux}
+\begin{itemize}
+    \item $K^n = \{(x_1, \dots, x_n) \mid x_i \in K\}$, avec l'addition et la multiplication scalaire coordonnée par coordonnée.
+    \item $\mathcal{M}_{n,p}(K)$, l'ensemble des matrices à $n$ lignes et $p$ colonnes.
+    \item $K[X]$, l'ensemble des polynômes à coefficients dans $K$.
+    \item $\mathcal{F}(I, K)$, l'ensemble des fonctions d'un intervalle $I$ vers $K$.
+\end{itemize}
+
+\begin{warnbox}
+Un piège classique en début d'apprentissage : \textbf{le vecteur nul $0_E$ n'est pas le nombre $0$}, même si l'on utilise souvent la même notation par abus de langage. Dans $K^n$, $0_E = (0, \dots, 0)$ ; dans $K[X]$, $0_E$ est le polynôme nul, etc.
+\end{warnbox}
+
+\subsection{Combinaisons linéaires}
+\begin{myrdef}{Combinaison linéaire}{comblin}
+Soit $(v_1, \dots, v_n)$ une famille finie de vecteurs de $E$. Un vecteur $v \in E$ est une \textbf{combinaison linéaire} de $(v_1, \dots, v_n)$ s'il existe des scalaires $\lambda_1, \dots, \lambda_n \in K$ tels que
+\[ v = \lambda_1 v_1 + \lambda_2 v_2 + \dots + \lambda_n v_n. \]
+\end{myrdef}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Vérifier que $\mathbb{R}^2$ muni de l'addition usuelle et de la multiplication scalaire usuelle est bien un espace vectoriel sur $\mathbb{R}$.
+    \item L'ensemble des suites réelles bornées est-il un espace vectoriel sur $\mathbb{R}$ (pour les opérations usuelles) ?
+    \item Le vecteur $(4, 1)$ est-il combinaison linéaire de $(1,1)$ et $(1,-1)$ dans $\mathbb{R}^2$ ?
+\end{enumerate}
+
+
+% ============================================================
+\section{Sous-espaces vectoriels}
+% ============================================================
+
+\subsection{Définition et caractérisation}
+\begin{myrdef}{Sous-espace vectoriel}{sev}
+Une partie $F$ d'un $K$-espace vectoriel $E$ est un \textbf{sous-espace vectoriel} de $E$ si :
+\begin{enumerate}
+    \item $F \neq \varnothing$ (en pratique, on vérifie $0_E \in F$) ;
+    \item $F$ est stable par combinaison linéaire : $\forall u,v \in F,\ \forall \lambda, \mu \in K,\ \lambda u + \mu v \in F$.
+\end{enumerate}
+\end{myrdef}
+
+\begin{myrthm}{Un sous-espace vectoriel est un espace vectoriel}{sev-ev}
+Si $F$ est un sous-espace vectoriel de $E$, alors $F$, muni des lois induites, est lui-même un espace vectoriel sur $K$.
+\end{myrthm}
+
+\begin{infobox}
+En pratique, pour montrer qu'un ensemble est un espace vectoriel, il est presque toujours plus rapide de montrer que c'est un sous-espace vectoriel d'un espace déjà connu ($K^n$, $K[X]$...) plutôt que de revérifier les huit axiomes de la \hyperref[def:ev]{définition~\ref*{def:ev}}.
+\end{infobox}
+
+\subsection{Exemples et contre-exemples}
+\begin{myrthm}{Solutions d'un système linéaire homogène}{sol-homogene}
+Soit $A \in \mathcal{M}_{n,p}(K)$. L'ensemble
+\[ F = \{ X \in K^p \mid AX = 0 \} \]
+est un sous-espace vectoriel de $K^p$.
+\end{myrthm}
+
+\begin{warnbox}
+Le sous-ensemble $\{(x,y) \in \mathbb{R}^2 \mid x + y = 1\}$ \textbf{n'est pas} un sous-espace vectoriel de $\mathbb{R}^2$ : il ne contient pas $(0,0)$ (c'est une droite affine, pas une droite vectorielle).
+\end{warnbox}
+
+\subsection{Somme et intersection de sous-espaces}
+\begin{myrdef}{Somme de deux sous-espaces}{somme-sev}
+Si $F$ et $G$ sont deux sous-espaces vectoriels de $E$, leur \textbf{somme} est
+\[ F + G = \{ u + v \mid u \in F,\ v \in G \}. \]
+C'est encore un sous-espace vectoriel de $E$.
+\end{myrdef}
+
+\begin{myrdef}{Somme directe}{somme-directe}
+La somme $F + G$ est dite \textbf{directe}, notée $F \oplus G$, si $F \cap G = \{0_E\}$. Dans ce cas, tout vecteur de $F + G$ s'écrit de manière \textbf{unique} comme somme d'un vecteur de $F$ et d'un vecteur de $G$.
+\end{myrdef}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Montrer que $F \cap G$ est toujours un sous-espace vectoriel de $E$, mais que $F \cup G$ ne l'est en général pas.
+    \item Dans $\mathbb{R}^3$, soient $F = \{(x,y,z) \mid x = y\}$ et $G = \{(x,y,z) \mid x = -y,\ z=0\}$. Calculer $F \cap G$ et déterminer si $F + G$ est directe.
+\end{enumerate}
+
+
+% ============================================================
+\section{Familles libres, génératrices, bases}
+% ============================================================
+
+\subsection{Familles génératrices}
+\begin{myrdef}{Famille génératrice}{generatrice}
+Une famille $(v_1, \dots, v_n)$ de vecteurs de $E$ est \textbf{génératrice} de $E$ si tout vecteur de $E$ est combinaison linéaire de $v_1, \dots, v_n$. On note alors $E = \mathrm{Vect}(v_1, \dots, v_n)$.
+\end{myrdef}
+
+\subsection{Familles libres}
+\begin{myrdef}{Famille libre}{libre}
+Une famille $(v_1, \dots, v_n)$ est \textbf{libre} (ou : les vecteurs sont \textbf{linéairement indépendants}) si la seule combinaison linéaire nulle est celle dont tous les coefficients sont nuls :
+\[ \lambda_1 v_1 + \dots + \lambda_n v_n = 0_E \implies \lambda_1 = \dots = \lambda_n = 0. \]
+Une famille qui n'est pas libre est dite \textbf{liée}.
+\end{myrdef}
+
+\begin{warnbox}
+Une famille liée signifie qu'\emph{au moins un} des vecteurs est combinaison linéaire des autres — pas nécessairement tous. Par exemple $\big((1,0),\,(0,1),\,(1,1)\big)$ est liée dans $\mathbb{R}^2$ car $(1,1) = (1,0)+(0,1)$.
+\end{warnbox}
+
+\subsection{Bases}
+\begin{myrdef}{Base}{base}
+Une famille $(e_1, \dots, e_n)$ de $E$ est une \textbf{base} de $E$ si elle est à la fois \textbf{libre} et \textbf{génératrice}. De façon équivalente, tout vecteur de $E$ s'écrit alors de manière \textbf{unique} comme combinaison linéaire des $e_i$.
+\end{myrdef}
+
+\begin{infobox}
+La base canonique de $K^n$ est $(e_1, \dots, e_n)$ où $e_i$ est le vecteur dont toutes les coordonnées sont nulles sauf la $i$-ième, égale à $1$. C'est la base « par défaut » que l'on utilise implicitement en écrivant $(x_1, \dots, x_n)$.
+\end{infobox}
+
+\subsection{Dimension}
+\begin{myrthm}{Théorème de la base incomplète (admis)}{base-incomplete}
+Si $E$ est un espace vectoriel de dimension finie, toute famille libre de $E$ peut être complétée en une base de $E$, et toute famille génératrice de $E$ contient une base de $E$.
+\end{myrthm}
+
+\begin{myrthm}{Existence et unicité de la dimension}{dimension}
+Si $E$ possède une base finie, alors \textbf{toutes} les bases de $E$ ont le même nombre d'éléments. Ce nombre est appelé la \textbf{dimension} de $E$, notée $\dim(E)$.
+\end{myrthm}
+
+\begin{infobox}
+Exemples à connaître : $\dim(K^n) = n$, $\dim(\mathcal{M}_{n,p}(K)) = np$, $\dim(K_n[X]) = n+1$ (polynômes de degré $\leqslant n$). L'espace $K[X]$ de \textbf{tous} les polynômes est, lui, de dimension infinie.
+\end{infobox}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item La famille $\big((1,2), (2,4)\big)$ est-elle libre dans $\mathbb{R}^2$ ?
+    \item Montrer que $\big((1,1,0), (0,1,1), (1,0,1)\big)$ est une base de $\mathbb{R}^3$.
+    \item Quelle est la dimension de l'espace des matrices symétriques de $\mathcal{M}_3(\mathbb{R})$ ?
+\end{enumerate}
+
+
+% ============================================================
+\section{Applications linéaires}
+% ============================================================
+
+\subsection{Définition}
+\begin{myrdef}{Application linéaire}{applin}
+Soient $E$ et $F$ deux $K$-espaces vectoriels. Une application $f : E \to F$ est \textbf{linéaire} si, pour tous $u,v \in E$ et $\lambda \in K$ :
+\[ f(u+v) = f(u) + f(v) \qquad \text{et} \qquad f(\lambda u) = \lambda f(u). \]
+On note $\mathcal{L}(E,F)$ l'ensemble des applications linéaires de $E$ vers $F$, et $\mathcal{L}(E) = \mathcal{L}(E,E)$ l'ensemble des \textbf{endomorphismes} de $E$.
+\end{myrdef}
+
+\begin{infobox}
+Vocabulaire : une application linéaire bijective est un \textbf{isomorphisme} ; un endomorphisme bijectif est un \textbf{automorphisme} ; une forme linéaire est une application linéaire à valeurs dans $K$.
+\end{infobox}
+
+\subsection{Noyau et image}
+\begin{myrdef}{Noyau et image}{noyau-image}
+Soit $f \in \mathcal{L}(E,F)$. On définit :
+\[ \ker f = \{ u \in E \mid f(u) = 0_F \} \qquad \text{(noyau)}, \]
+\[ \operatorname{im} f = \{ f(u) \mid u \in E \} \qquad \text{(image)}. \]
+$\ker f$ est un sous-espace vectoriel de $E$, et $\operatorname{im} f$ est un sous-espace vectoriel de $F$.
+\end{myrdef}
+
+\begin{myrthm}{Caractérisation de l'injectivité}{injectivite}
+Une application linéaire $f$ est \textbf{injective} si et seulement si $\ker f = \{0_E\}$.
+\end{myrthm}
+
+\subsection{Théorème du rang}
+\begin{myrdef}{Rang d'une application linéaire}{rang-applin}
+Le \textbf{rang} de $f \in \mathcal{L}(E,F)$ est la dimension de son image : $\operatorname{rg}(f) = \dim(\operatorname{im} f)$.
+\end{myrdef}
+
+\begin{myrthm}{Théorème du rang}{rang}
+Si $E$ est de dimension finie, alors
+\[ \dim(E) = \dim(\ker f) + \operatorname{rg}(f). \]
+\end{myrthm}
+
+\begin{infobox}
+Conséquence immédiate : si $\dim(E) = \dim(F)$, alors $f$ est injective $\iff$ $f$ est surjective $\iff$ $f$ est bijective. Cette équivalence, propre à la dimension finie, est extrêmement utile en pratique.
+\end{infobox}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Soit $f : \mathbb{R}^3 \to \mathbb{R}^2$ définie par $f(x,y,z) = (x+y, y+z)$. Déterminer $\ker f$ et $\operatorname{im} f$, et vérifier le théorème du rang.
+    \item Montrer que la dérivation $D : K_n[X] \to K_n[X]$, $P \mapsto P'$, est linéaire. Est-elle injective ? Surjective ?
+\end{enumerate}
+
+
+% ============================================================
+\section{Matrices}
+% ============================================================
+
+\subsection{Matrice d'une application linéaire}
+Si $E$ et $F$ sont de dimension finie, munis de bases $\mathcal{B}_E = (e_1,\dots,e_p)$ et $\mathcal{B}_F = (f_1,\dots,f_n)$, toute application linéaire $u \in \mathcal{L}(E,F)$ est entièrement déterminée par les images $u(e_j)$ des vecteurs de base. On lui associe la \textbf{matrice} $A = \mathrm{Mat}_{\mathcal{B}_E, \mathcal{B}_F}(u) \in \mathcal{M}_{n,p}(K)$ dont la $j$-ième colonne contient les coordonnées de $u(e_j)$ dans $\mathcal{B}_F$.
+
+\begin{infobox}
+Cette correspondance entre applications linéaires (en dimension finie) et matrices est une des idées les plus importantes du cours : elle permet de remplacer un raisonnement abstrait par un calcul explicite sur des tableaux de nombres.
+\end{infobox}
+
+\subsection{Opérations matricielles}
+\begin{myrdef}{Produit matriciel}{produit-mat}
+Si $A \in \mathcal{M}_{n,p}(K)$ et $B \in \mathcal{M}_{p,q}(K)$, le produit $C = AB \in \mathcal{M}_{n,q}(K)$ est défini par
+\[ c_{ij} = \sum_{k=1}^{p} a_{ik} b_{kj}. \]
+\end{myrdef}
+
+\begin{warnbox}
+Le produit matriciel \textbf{n'est pas commutatif} en général : $AB \neq BA$, et l'une des deux écritures peut même ne pas être définie si les dimensions ne correspondent pas. Il correspond exactement à la composition des applications linéaires associées : $\mathrm{Mat}(v \circ u) = \mathrm{Mat}(v)\,\mathrm{Mat}(u)$.
+\end{warnbox}
+
+\subsection{Matrices inversibles}
+\begin{myrdef}{Matrice inversible}{mat-inversible}
+Une matrice carrée $A \in \mathcal{M}_n(K)$ est \textbf{inversible} s'il existe $B \in \mathcal{M}_n(K)$ telle que $AB = BA = I_n$. On note alors $B = A^{-1}$.
+\end{myrdef}
+
+\begin{myrthm}{Inversibilité et endomorphisme associé}{inversible-bij}
+Une matrice carrée $A$ est inversible si et seulement si l'endomorphisme de $K^n$ qu'elle représente (dans la base canonique) est bijectif, ce qui équivaut (via le théorème du rang) à $\ker A = \{0\}$.
+\end{myrthm}
+
+\subsection{Rang d'une matrice}
+\begin{myrdef}{Rang d'une matrice}{rang-mat}
+Le \textbf{rang} d'une matrice $A$ est la dimension du sous-espace vectoriel engendré par ses colonnes (c'est aussi le rang de l'application linéaire associée). On le calcule en pratique en réduisant $A$ à une forme échelonnée par des opérations élémentaires sur les lignes, le rang étant alors le nombre de lignes non nulles.
+\end{myrdef}
+
+\subsection{Application numérique}
+Les bibliothèques de calcul scientifique implémentent nativement les opérations matricielles présentées.
+
+\begin{pyblock}
+import numpy as np
+
+A = np.array([[2, 1, 0],
+              [1, 3, 1],
+              [0, 1, 2]])
+
+print("Rang :", np.linalg.matrix_rank(A))
+print("Determinant :", np.linalg.det(A))
+print("Inverse :\n", np.linalg.inv(A))
+\end{pyblock}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Calculer $AB$ et $BA$ pour $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ et $B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Conclure sur la commutativité.
+    \item Déterminer si $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$ est inversible.
+\end{enumerate}
+
+
+% ============================================================
+\section{Systèmes linéaires}
+% ============================================================
+
+\subsection{Écriture matricielle}
+Un système de $n$ équations linéaires à $p$ inconnues
+\[
+\begin{cases}
+a_{11}x_1 + \dots + a_{1p}x_p = b_1 \\
+\quad \vdots \\
+a_{n1}x_1 + \dots + a_{np}x_p = b_n
+\end{cases}
+\]
+s'écrit de façon compacte $AX = B$, avec $A \in \mathcal{M}_{n,p}(K)$, $X \in K^p$ l'inconnue et $B \in K^n$ le second membre.
+
+\subsection{Structure de l'ensemble des solutions}
+\begin{myrthm}{Structure affine des solutions}{structure-solutions}
+Soit $S_0$ l'ensemble des solutions du système homogène associé $AX = 0$ (un sous-espace vectoriel, cf. \hyperref[thm:sol-homogene]{théorème~\ref*{thm:sol-homogene}}). Si $X_0$ est une solution particulière de $AX = B$, alors l'ensemble des solutions de $AX=B$ est
+\[ S = X_0 + S_0 = \{ X_0 + Y \mid Y \in S_0 \}. \]
+\end{myrthm}
+
+\begin{infobox}
+C'est le même principe que pour les équations différentielles linéaires : « solution générale = solution particulière + solution du problème homogène ».
+\end{infobox}
+
+\subsection{Méthode du pivot de Gauss}
+La méthode du pivot consiste à effectuer des opérations élémentaires sur les lignes du système ($L_i \leftrightarrow L_j$, $L_i \leftarrow \lambda L_i$ avec $\lambda \neq 0$, $L_i \leftarrow L_i + \lambda L_j$) pour amener le système à une forme échelonnée, plus simple à résoudre par remontée.
+
+\begin{myrthm}{Discussion du nombre de solutions}{discussion-solutions}
+Après échelonnement d'un système $AX=B$ à $n$ équations et $p$ inconnues, de rang $r$ :
+\begin{itemize}
+    \item si une ligne du type $0 = b$ apparaît avec $b \neq 0$, le système est \textbf{incompatible} (aucune solution) ;
+    \item sinon, si $r = p$, le système a une \textbf{unique solution} ;
+    \item sinon ($r < p$), le système a une \textbf{infinité de solutions}, dépendant de $p - r$ paramètres libres.
+\end{itemize}
+\end{myrthm}
+
+\subsection{Exemple résolu}
+\begin{infobox}
+Résolvons $\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + 2y - z = 2 \end{cases}$.
+
+$L_2 \leftarrow L_2 - 2L_1$ et $L_3 \leftarrow L_3 - L_1$ donnent $\begin{cases} x+y+z=6 \\ -3y-z=-9 \\ y-2z=-4 \end{cases}$.
+
+$L_3 \leftarrow 3L_3 + L_2$ donne $-7z = -21$, soit $z=3$. On remonte : $y = 2z-4 = 2$, puis $x = 6-y-z = 1$.
+
+L'unique solution est $(x,y,z) = (1,2,3)$.
+\end{infobox}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Résoudre par la méthode du pivot : $\begin{cases} x + 2y = 3 \\ 2x + 4y = 6 \end{cases}$. Combien de solutions y a-t-il ?
+    \item Pour quelles valeurs du paramètre $m$ le système $\begin{cases} x + y = 1 \\ mx + y = m \end{cases}$ admet-il une unique solution ?
+\end{enumerate}
+
+
+% ============================================================
+\section{Déterminants}
+% ============================================================
+
+\subsection{Déterminant en petite dimension}
+\begin{myrdef}{Déterminant $2\times 2$ et $3\times 3$}{det-petit}
+Pour $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, on pose $\det(A) = ad - bc$.
+
+Pour $A \in \mathcal{M}_3(K)$, la \textbf{règle de Sarrus} donne
+\[ \det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}. \]
+\end{myrdef}
+
+\begin{warnbox}
+La règle de Sarrus \textbf{ne se généralise pas} aux matrices $4\times 4$ ou plus : en dimension supérieure, on utilise le développement selon une ligne ou une colonne (cofacteurs), ou l'on se ramène à une forme triangulaire par pivot de Gauss.
+\end{warnbox}
+
+\subsection{Propriétés}
+\begin{myrthm}{Propriétés du déterminant}{prop-det}
+Pour $A, B \in \mathcal{M}_n(K)$ :
+\begin{enumerate}
+    \item $\det(AB) = \det(A)\det(B)$ ;
+    \item $A$ est inversible $\iff$ $\det(A) \neq 0$, et alors $\det(A^{-1}) = 1/\det(A)$ ;
+    \item échanger deux lignes (ou deux colonnes) change le signe du déterminant ;
+    \item le déterminant d'une matrice triangulaire est le produit de ses coefficients diagonaux.
+\end{enumerate}
+\end{myrthm}
+
+\begin{infobox}
+Le déterminant permet donc de tester très rapidement l'inversibilité d'une matrice, sans avoir à la réduire complètement : $A$ inversible $\iff \det(A)\neq 0$.
+\end{infobox}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Calculer $\det \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}$ et $\det \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 1 \\ 3 & 0 & 1 \end{pmatrix}$.
+    \item Sans calcul, justifier que $\det\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 0 & 1 & 5\end{pmatrix} = 0$.
+\end{enumerate}
+
+
+% ============================================================
+\section{Vers la diagonalisation}
+% ============================================================
+
+\subsection{Valeurs propres et vecteurs propres}
+\begin{myrdef}{Valeur propre, vecteur propre}{valpropre}
+Soit $u \in \mathcal{L}(E)$. Un scalaire $\lambda \in K$ est une \textbf{valeur propre} de $u$ s'il existe un vecteur $v \neq 0_E$ tel que $u(v) = \lambda v$. On dit alors que $v$ est un \textbf{vecteur propre} associé à $\lambda$.
+\end{myrdef}
+
+\begin{myrdef}{Sous-espace propre}{sep}
+Pour $\lambda$ valeur propre de $u$, l'ensemble
+\[ E_\lambda = \ker(u - \lambda \,\mathrm{id}) = \{ v \in E \mid u(v) = \lambda v \} \]
+est un sous-espace vectoriel de $E$, appelé \textbf{sous-espace propre} associé à $\lambda$.
+\end{myrdef}
+
+\subsection{Polynôme caractéristique}
+\begin{myrdef}{Polynôme caractéristique}{polycar}
+Pour $A \in \mathcal{M}_n(K)$, le \textbf{polynôme caractéristique} de $A$ est
+\[ \chi_A(X) = \det(A - X I_n). \]
+Les valeurs propres de $A$ sont exactement les racines de $\chi_A$ dans $K$.
+\end{myrdef}
+
+\begin{infobox}
+Ce chapitre n'est qu'une porte d'entrée : la théorie de la diagonalisation (quand une matrice est-elle semblable à une matrice diagonale ? comment calculer $A^k$ efficacement ?) fait l'objet d'un cours ultérieur dédié.
+\end{infobox}
+
+\subsection{Exercices}
+\begin{enumerate}
+    \item Calculer les valeurs propres de $A = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$. Que remarque-t-on pour une matrice diagonale ?
+    \item Calculer le polynôme caractéristique de $A = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ et en déduire ses valeurs propres.
+\end{enumerate}
+
+
+% ============================================================
+\section{Pour aller plus loin}
+% ============================================================
+Ce polycopié couvre les fondations de l'algèbre linéaire en dimension finie. Les prolongements naturels sont :
+\begin{itemize}
+    \item la \textbf{diagonalisation} et la \textbf{trigonalisation} des endomorphismes ;
+    \item les \textbf{espaces euclidiens} (produit scalaire, orthogonalité, projections) ;
+    \item la \textbf{réduction des formes quadratiques} ;
+    \item les applications au \textbf{calcul différentiel} (jacobienne, hessienne) et à l'\textbf{apprentissage automatique} (SVD, ACP).
+\end{itemize}
+\vspace{5pt}
+\begin{center}
+\textit{Note~: Le contenu pédagogique de ce document a été intégralement généré par intelligence artificielle à des fins exclusives de démonstration typographique pour la classe \LaTeX{} myrtille.cls. Il est fourni «~tel quel~», sans garantie d'exactitude, d'exhaustivité ou de rigueur et ne saurait constituer un véritable support de cours.} \\
+\vspace{10pt}
+{\Large \ccbysa} 
+\end{center}
+\end{document}

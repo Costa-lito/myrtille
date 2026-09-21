@@ -1,0 +1,374 @@
+% This work is distributed under the MIT License.
+\documentclass[theme=betula]{myrtille}
+
+% ============================================================
+%  Configuration de la page de garde
+% ============================================================
+\doctype{Classe pour LaTeX}
+\title{Betula}
+\subtitle{Charte Graphique \& guide d'utilisation}
+\version{v2.0}
+
+\coverfeatures{
+  \begin{tabular}{@{}ll@{}}
+    \color{coverMuted}\sffamily\small Identité visuelle & \color{accent}\sffamily\small \textbullet\ Palette de niveaux de gris, typographie \\[3pt]
+    \color{coverMuted}\sffamily\small Composants & \color{accent}\sffamily\small \textbullet\ Badges, boîtes d'information, notes \\[3pt]
+    \color{coverMuted}\sffamily\small Blocs de code & \color{accent}\sffamily\small \textbullet\ Python, JSON, Shell \\[3pt]
+    \color{coverMuted}\sffamily\small Éléments de structure & \color{accent}\sffamily\small \textbullet\ Listes, tableaux, séparateurs \\
+  \end{tabular}
+}
+
+\coverfooter{Guide de référence pour la rédaction documentaire (impression noir et blanc)}
+
+\hypersetup{pdftitle={Betula — Charte Graphique}}
+\headerleft{Betula \textbf{·} Charte Graphique}
+
+% --- Ajout de langages personnalisés pour la section 8.5 ---
+\newmyrtilleblock{jsblock}{JavaScript}{success}
+\newmyrtilleblock[numbers=none]{htmlblock}{HTML}{warn}
+
+\begin{document}
+% ============================================================
+% Génération automatique de la page de garde
+\makecover
+
+% ── TABLE DES MATIÈRES ───────────────────────────────────────
+{\sffamily\Large\bfseries\color{dark} Table des matières}\par
+\vspace{-15pt} % (optionnel : resserre l'espace vertical avant le trait si besoin)
+\hrulefull
+\tableofcontents
+
+\newpage
+
+% ── CONTENU DU DOCUMENT ──────────────────────────────────────
+
+\section{Introduction}
+Betula est une déclinaison en niveau de gris pour l'impression noir et blanc de la charte graphique Myrtille. Myrtille est une charte graphique pensée pour produire des documents techniques avec un rendu clair et moderne. Son utilisation est faite pour être simple grâce à l'utilisation d'une classe \LaTeX\ standard. 
+
+\subsection{Thèmes alternatifs}
+Bien que ce document présente la déclinaison en niveaux de gris (\ci{theme=betula}), la classe embarque nativement d'autres thèmes chromatiques complets que vous pouvez activer lors de l'appel de la classe :
+\begin{itemize}
+    \item \textbf{Myrtille} (\ci{theme=myrtille}) : La palette bleue par défaut.
+    \item \textbf{Pringlea} (\ci{theme=pringlea}) : Une déclinaison orientée vers des teintes vert canard et forêt.
+    \item \textbf{Acerola} (\ci{theme=acerola}) : Une déclinaison basée sur des teintes rouge cramoisi et bordeaux.
+    \item \textbf{Betula} (\ci{theme=betula}) : Une déclinaison en niveau de gris pour l'impression noir et blanc.
+\end{itemize}
+
+\section{Palette de Couleurs}
+Cette section détaille l'ensemble des couleurs définies dans la classe de Myrtille (thème Betula en niveaux de gris). Elles sont organisées par thématique pour faciliter leur utilisation.
+
+\subsection{Couleurs Principales (Thème)}
+Ces couleurs constituent l'identité visuelle de base et sont utilisées pour les éléments mis en évidence (titres, liens, bordures principales).
+
+\vspace{0.5cm}
+\noindent
+\colorswatch{accent}
+\colorswatch{accentDark}
+\colorswatch{accentPale}
+\colorswatch{coverBg}
+
+\subsection{Couleurs Neutres (Texte et Fonds)}
+Ces nuances de gris et de teintes claires structurent le document, assurent la lisibilité du texte et définissent les arrière-plans secondaires.
+
+\vspace{0.5cm}
+\noindent
+\colorswatch{dark}
+\colorswatch{mid}
+\colorswatch{light}
+\colorswatch{border}
+\colorswatch{sidebarBg}
+
+\subsection{Statuts et Alertes}
+Ces couleurs sont strictement réservées aux boîtes de messages et aux badges indiquant un état particulier (succès, avertissement, information).
+
+\vspace{0.5cm}
+\noindent
+\colorswatch{success}
+\colorswatch{warn}
+\colorswatch{warnDark}
+\colorswatch{warnBg}
+\colorswatch{infoGreen}
+\colorswatch{infoBg}
+
+\subsection{Coloration Syntaxique (Code)}
+Utilisées en arrière-plan et pour coloriser les éléments des blocs de code (mots-clés, chaînes de caractères, commentaires).
+
+\vspace{0.5cm}
+\noindent
+\colorswatch{codeBg}
+\colorswatch{codeText}
+\colorswatch{codeKw}
+\colorswatch{codeStr}
+\colorswatch{codeCmt}
+\colorswatch{inlineCode}
+
+\section{Typographie et Hiérarchie}
+Le document utilise la police sans-serif (Inter) pour un rendu moderne et épuré.
+
+\subsection{Ceci est un titre de Sous-section (\textbackslash subsection)}
+Le texte des paragraphes standards s'affiche dans la couleur noire par défaut du document. L'espacement entre les paragraphes est géré automatiquement sans indentation, offrant un confort de lecture optimal.
+
+\subsubsection{Ceci est un titre de Sous-sous-section (\textbackslash subsubsection)}
+Les titres de niveau 3 utilisent la couleur \ci{mid} pour marquer une séparation subtile dans le contenu sans surcharger visuellement la page.
+
+\hrulefull
+
+La ligne ci-dessus est générée avec la commande \ci{\textbackslash hrulefull}, idéale pour séparer deux grandes idées au sein d'une même section.
+
+\section{Éléments de texte et Badges}
+
+\subsection{Listes à puces et numérotées}
+Voici un exemple de liste non ordonnée (\ci{itemize}) avec différents niveaux:
+\begin{itemize}
+    \item Premier point de la liste principale.
+    \item Deuxième point avec une sous-liste:
+    \begin{itemize}
+        \item Élément secondaire A.
+        \item Élément secondaire B.
+    \end{itemize}
+    \item Troisième point.
+\end{itemize}
+
+Voici un exemple de liste ordonnée (\ci{enumerate}):
+\begin{enumerate}
+    \item Étape numéro un de la procédure.
+    \item Étape numéro deux, qui suit logiquement la première.
+    \item Étape finale du processus.
+\end{enumerate}
+
+\subsection{Badges et Code en ligne}
+Les badges sont conçus pour qualifier rapidement des informations (type de variable, obligation, etc.). Le code en ligne s'écrit avec la commande \ci{\textbackslash ci\{...\}}. Exemple: la variable \ci{config\_path} doit être définie.
+
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\linewidth}{l X}
+\toprule
+\rowcolor{tableHdr}
+\textbf{Commande} & \textbf{Rendu visuel et Usage} \\
+\midrule
+\ci{\textbackslash badgeReq} & \badgeReq~ Indique qu'un paramètre est obligatoire. \\
+\ci{\textbackslash badgeOpt} & \badgeOpt~ Indique qu'un paramètre est facultatif. \\
+\ci{\textbackslash badgeInt} & \badgeInt~ Type de donnée entier. \\
+\ci{\textbackslash badgeFloat} & \badgeFloat~ Type de donnée flottant. \\
+\ci{\textbackslash badgeStr} & \badgeStr~ Type de donnée chaîne de caractères. \\
+\ci{\textbackslash badgeMat} & \badgeMat~ Type matriciel ou array. \\
+\ci{\textbackslash badgePolar} & \badgePolar~ Coordonnées polaires. \\
+\bottomrule
+\end{tabularx}
+
+\section{Création de Badges Personnalisés}
+La classe met à disposition une macro racine \ci{\textbackslash badge[couleur]\{texte\}} qui permet de générer de nouveaux badges en quelques secondes.
+
+\subsection{À partir d'une couleur existante}
+Si la couleur dont vous avez besoin figure déjà dans la palette (par exemple \ci{infoGreen}), ajoutez simplement une nouvelle commande dans le préambule de votre document:
+
+\begin{texblock}
+\newcommand{\badgeNouveau}{\badge[infoGreen]{Nouveau}}
+\end{texblock}
+Résultat visuel: \badgeNouveau
+
+\subsection{À partir d'une couleur inédite}
+Bien que ce ne soit pas recommandé, si vous souhaitez utiliser une teinte qui n'est pas dans la charte standard, vous devez la définir avec \ci{\textbackslash definecolor}, puis créer le badge:
+
+\begin{texblock}
+% 1. Déclarer la couleur dans le préambule
+\definecolor{customPurple}{HTML}{8E44AD}
+% 2. Créer la macro associée
+\newcommand{\badgePerso}{\badge[customPurple]{Spécial}}
+\end{texblock}
+Résultat visuel: \badgePerso
+
+\section{Blocs d'Information et Notes}
+Ces environnements permettent de mettre en évidence des informations cruciales.
+
+\subsection{Boîte d'Information (infobox)}
+\begin{infobox}
+Ceci est une boîte d'information générée avec \ci{\textbackslash begin\{infobox\}}. Elle utilise les couleurs \ci{accentPale} pour le fond et \ci{accent} pour la bordure. Elle est idéale pour les remarques, astuces ou compléments d'information.
+\end{infobox}
+
+\subsection{Boîte d'Avertissement (warnbox)}
+\begin{warnbox}
+Ceci est une boîte d'avertissement générée avec \ci{\textbackslash begin\{warnbox\}}. Elle utilise des nuances adaptées pour capter l'attention de l'utilisateur sur une action potentiellement destructrice ou une contrainte forte.
+\end{warnbox}
+
+\subsection{Note de Marge (sidenote)}
+\sidenote{Ceci est une note latérale (\ci{\textbackslash sidenote}). Elle utilise un fond discret \ci{sidebarBg} et une bordure \ci{border}. Parfaite pour les métadonnées, les renvois bibliographiques ou des détails techniques très spécifiques.}
+
+\subsection{Notes de bas de page (Symboliques)}
+La classe Myrtille utilise par défaut un système de notes de bas de page symboliques plutôt que numériques. Cela permet d'éviter toute confusion avec des appels de bibliographie ou des exposants mathématiques, tout en apportant une touche d'élégance éditoriale.
+
+Voici une affirmation importante qui nécessite une source\footnote{La source s'affichera en bas de page avec un astérisque ou le symbole suivant.}.
+
+\section{Environnements Mathématiques}
+La classe Myrtille intègre des boîtes spécifiques pour mettre en valeur les théorèmes, propriétés et définitions. Ces environnements sont numérotés automatiquement par section et supportent les références croisées.
+
+\subsection{Théorèmes et Propriétés (myrthm)}
+L'environnement \ci{myrthm} utilise la couleur principale (\ci{accent}) pour encadrer les résultats mathématiques ou logi\-ques importants. Il prend deux arguments obligatoires : le titre du théorème, et un label pour y faire référence plus tard.
+
+\begin{myrthm}{Théorème de Pythagore}{pythagore}
+Dans un triangle rectangle, le carré de la longueur de l'hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés.
+\[ a^2 + b^2 = c^2 \]
+\end{myrthm}
+
+\subsection{Définitions (myrdef)}
+L'environnement \ci{myrdef} s'appuie sur la teinte (\ci{infoGreen}) pour introduire de nouveaux concepts de manière distincte des théorèmes.
+
+\begin{myrdef}{Espace Vectoriel}{espace_vect}
+Un espace vectoriel sur un corps $K$ est un ensemble muni d'une loi de composition interne (l'addition) et d'une loi de composition externe (la multiplication par un scalaire).
+\end{myrdef}
+
+\subsection{Références croisées}
+Pour faire référence à ces éléments dans votre texte, utilisez la commande standard \ci{\textbackslash ref\{...\}} accompagnée des préfixes \ci{thm:} ou \ci{def:}.
+
+Pour citer le théorème précédent: \ref{thm:pythagore}\\
+Pour citer la définition précédente: \ref{def:espace_vect}
+
+\section{Blocs de Code}
+La classe définit plusieurs environnements distincts, basés sur \ci{tcolorbox} et \ci{listings}, pour présenter du code source de manière élégante avec une barre latérale contrastée.
+
+\subsection{Code Python (pyblock)}
+\begin{pyblock}
+def calculer_trajectoire(vitesse, angle):
+    """Calcule la trajectoire en fonction de la vitesse et angle."""
+    g = 9.81
+    distance = (vitesse ** 2) * math.sin(2 * angle) / g
+    return distance
+
+# Exemple d'utilisation
+print(f"Distance: {calculer_trajectoire(15, 45)}")
+\end{pyblock}
+
+\subsection{Code JSON (jsonblock)}
+\begin{jsonblock}
+{
+  "project": "Betula",
+  "version": "2.0",
+  "dependencies": {
+    "pyside6": "^6.5.0",
+    "numpy": ">=1.24"
+  },
+  "active": true
+}
+\end{jsonblock}
+
+\subsection{Code Shell (shblock)}
+\begin{shblock}
+#!/bin/bash
+# Installation des dépendances
+pip install -r requirements.txt
+python main.py --config config.json
+\end{shblock}
+
+\subsection{Code LaTeX (texblock)}
+
+\begin{texblock}
+\documentclass[a4paper, 10pt]{article}
+\usepackage[utf8]{inputenc}
+% Ceci est un commentaire LaTeX
+\begin{dοcument}
+\section{Titre Principal}
+Ceci est un exemple de code source \LaTeX\ affiché dans la documentation.
+
+\end{dοcument}
+\end{texblock}
+
+% Dans ce textblock on a utilisé un omicron grec au lieu d'un o dans le \end{document}
+% pour ne pas que ca fasse de problème avec la coloration syntaxique de certains éditeur
+% On peut tout à fait écrire un vrai \end{document} sans générer des erreurs de 
+% compilation, le LaTeX des texblock étant neutr
+
+\subsection{Ajouter de nouveaux langages}
+La classe inclut une macro génératrice abstraite permettant d'ajouter très facilement de nouveaux langages pris en charge par le package \ci{listings}.
+
+\begin{texblock}
+% Exemple pour ajouter du JavaScript avec une bordure de statut (success) :
+\newmyrtilleblock{jsblock}{JavaScript}{success}
+
+% Exemple pour du HTML sans numéros de ligne :
+\newmyrtilleblock[numbers=none]{htmlblock}{HTML}{warn}
+\end{texblock}
+
+\section{Tableaux}
+Les tableaux utilisent les extensions \ci{booktabs} et \ci{tabularx} pour un rendu professionnel. L'en-tête du tableau est coloré avec \ci{tableHdr}.
+
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\linewidth}{l c c X}
+\toprule
+\rowcolor{tableHdr}
+\textbf{Paramètre} & \textbf{Type} & & \textbf{Description} \\
+\midrule
+host & \badgeStr & \badgeReq & Adresse IP ou nom d'hôte du serveur cible. \\
+port & \badgeInt & \badgeOpt & Port de connexion (par défaut : 8080). \\
+timeout & \badgeFloat & \badgeOpt & Délai d'attente maximum en secondes. \\
+matrix\_data & \badgeMat & \badgeReq & Jeu de données sous forme de matrice. \\
+\bottomrule
+\end{tabularx}
+
+\section{Encadrés d'Images}
+La classe propose plusieurs environnements pour intégrer des images de manière élégante et cohérente.
+
+\subsection{Carte image (imgbox)}
+\begin{imgbox}[Le bouleau (\textit{Betula})]{0.8\linewidth}{pictures/birch.jpg}
+    Arbre à l'écorce blanche caractéristique qui donne son nom à cette déclinaison monochrome.
+\end{imgbox}
+
+\begin{texblock}
+\begin{imgbox}[Légende du titre]{0.8\linewidth}{pictures/birch.jpg}
+Texte optionnel sous l'image.
+\end{imgbox}
+\end{texblock}
+
+\subsection{Image et texte côte à côte (imgfloat)}
+\begin{imgfloat}{pictures/birch.jpg}
+\textbf{Betula}\\[4pt]
+Le bouleau (\textit{Betula}) est un genre d'arbres de la famille des Bétulacées, immédiatement reconnaissable à son écorce argentée et blanche ponctuée de marbrures sombres.
+
+Son nom a été choisi pour cette déclinaison car il évoque naturellement le contraste, la pureté et l'élégance sobre des teintes en niveaux de gris adaptées à une impression noir et blanc optimale.
+\end{imgfloat}
+
+\subsection{Note latérale illustrée (\textbackslash imgsidenote)}
+\imgsidenote{pictures/birch.jpg}{Cette miniature illustre l'utilisation de la commande \ci{\textbackslash imgsidenote}. Idéale pour associer une petite image à une note informative sans perturber le flux du texte.}
+
+\subsection{Figure numérotée (\textbackslash myrfig)}
+La commande \ci{\textbackslash myrfig} génère une figure flottante numérotée automatiquement avec une légende, entourée d'un cadre fin et discret.
+
+\myrfig[width=0.5\linewidth]{pictures/birch.jpg}{Le bouleau (\textit{Betula}), arbre éponyme de cette déclinaison monochrome.}
+
+\section{Page de Garde}
+La classe intègre un générateur automatique de page de garde. La personnalisation s'effectue de manière claire et centralisée dans le préambule de votre document. Une fois les variables définies (\ci{\textbackslash doctype}, \ci{\textbackslash title}, \ci{\textbackslash version}, \ci{\textbackslash coverfeatures}...), il suffit d'appeler la commande \ci{\textbackslash makecover} juste après le \ci{\textbackslash begin\{document\}}.
+
+\subsection{Titre compact (\textbackslash makecoversimple)}
+La page de garde intégrale (\ci{\textbackslash makecover}) est pensée pour de grands documents (manuels, livres). Elle est cependant souvent disproportionnée pour un simple rapport ou un polycopié de cours, où l'on souhaite aller directement au contenu sans « sacrifier » une page entière à la couverture.
+
+Pour ce cas de figure, la classe propose depuis la version 2.1 une alternative légère : \ci{\textbackslash makecoversimple}. Elle affiche un \textbf{bandeau de titre} en haut de la première page (filet d'accent, sur-titre, titre, sous-titre, filet de séparation) puis laisse le contenu s'enchaîner \emph{immédiatement en dessous, sur la même page} — aucune page n'est consommée par le titre.
+
+\begin{infobox}
+\ci{\textbackslash makecoversimple} réutilise exactement les mêmes variables de préambule que \ci{\textbackslash makecover} (\ci{\textbackslash doctype}, \ci{\textbackslash title}, \ci{\textbackslash subtitle}, \ci{\textbackslash version}, \ci{\textbackslash coverfooter}). Il suffit donc de remplacer un appel par l'autre : aucune autre modification du préambule n'est nécessaire. Seule la variable \ci{\textbackslash coverfeatures} (le tableau de fonctionnalités de la grande page de garde) n'est pas utilisée par cette version compacte.
+\end{infobox}
+
+\begin{texblock}
+\doctype{Polycopié de cours}
+\title{Algèbre linéaire}
+\subtitle{Chapitre 3 -- Espaces vectoriels}
+\version{2026-2027}
+\coverfooter{L2 Mathématiques \textbullet\ Semestre 3}
+
+\begin{dοcument}
+\makecoversimple   % au lieu de \makecover
+\section{Rappels}
+...
+\end{dοcument}
+\end{texblock}
+
+Sur la première page, le filet et le texte d'en-tête habituels (\ci{\textbackslash headerleft} / nom de section) sont automatiquement désactivés pour éviter un doublon visuel avec le filet d'accent du bandeau ; seul le numéro de page reste affiché en pied de page. Les pages suivantes retrouvent l'en-tête standard.
+
+\section{Licences et Crédits}
+\begin{itemize}
+    \item \textbf{Auteur :} Ce projet et ce document ont été créés par Costa Zaffani-Le Carpentier.
+    \item \textbf{Code source :} Fichiers \ci{.tex} et classe \ci{myrtille.cls} sous licence MIT.
+    \item \textbf{Image \textit{birch.jpg} :} « \textit{Birches} » par \textbf{joeldinda} (\href{https://www.flickr.com/photos/96739609@N00/9516542874}{Source}) sous licence \href{https://creativecommons.org/licenses/by-nc-sa/2.0/}{CC-BY-NC-SA 2.0}.
+    \item \textbf{Document PDF :} Ce document est mis à disposition sous licence \href{https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr}{CC-BY-NC-SA 4.0}.
+\end{itemize}
+
+\end{document}

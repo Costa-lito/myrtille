@@ -1,0 +1,45 @@
+# ============================================================
+#  Sorties de compilation LaTeX
+#  (cf. .latexmkrc : aux_dir = Exemples/source/build, out_dir = Exemples)
+# ============================================================
+# Les PDF d'exemple dans Exemples/ sont volontairement versionnés
+# (aperçu du rendu sans avoir à recompiler) : pas de règle *.pdf ici.
+Exemples/*.synctex.gz
+Exemples/source/build/
+
+# Fichiers auxiliaires LaTeX (au cas où latexmk serait lancé
+# sans le .latexmkrc du projet, ou depuis un autre dossier)
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.listing
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.figlist
+*.makefile
+*.auxlock
+
+# ============================================================
+#  Claude Code
+# ============================================================
+# Settings locaux à la machine / session : ne pas versionner.
+.claude/settings.local.json
+
+# ============================================================
+#  OS / éditeurs
+# ============================================================
+.DS_Store
+Thumbs.db
+*.swp
+*~
