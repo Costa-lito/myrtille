@@ -129,7 +129,7 @@ Le fond de la page de garde (`\makecover`) est entièrement vectoriel : dessiné
 
 ### Code source
 
-Les fichiers `.cls` et `.tex` sont distribués sous licence **MIT** (voir l'en-tête de chaque fichier).
+Les fichiers `.cls` et `.tex` sont distribués sous licence **MIT**.
 
 ### Assets visuels
 
